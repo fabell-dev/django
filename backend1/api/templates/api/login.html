@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      {% load static %}
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <link rel="icon" href="{% static 'icons/logo.svg' %}"> 
+   <link rel="stylesheet" href="{% static 'style/style(login).css' %}">
+   <title>Iniciar Sesión</title>
+</head>
+<body>
+
+   <div id="side__containerl">
+      <h2>Bienvenido</h2>
+      <p>a Frutal Mango Dulce </p>
+   </div>
+
+   <div id="containerl">
+      <h1>Iniciar Sesión</h1>
+      <form id="form__containerl" method="POST" autocomplete="off">
+      {% csrf_token %}
+      <!-- {{registerform.as_p}} -->
+      {{loginform}}
+      <input type="submit" value="Login"/>
+      <p>¿No tienes una Cuenta?</p>
+      <button type="button"><a href="register">Crear Cuenta</a></button>
+   </form>
+   </div>
+
+   <div id="ghost__containerl"></div>
+   
+
+<style>
+
+*{padding: 0;margin: 0;box-sizing: border-box;}
+
+@font-face {
+   font-family: AnonymousPro; font-weight: 400;
+   src: url("{% static 'fonts/AnonymousPro-Regular.ttf' %}") format(truetype);}
+
+@font-face {
+   font-family: AnonymousPro; font-weight: 800;
+   src: url("{% static 'fonts/AnonymousPro-Bold.ttf' %}") format(truetype);}
+
+@font-face {font-family: FuzzyBubbles;src: url("{% static 'fonts/FuzzyBubbles-Bold.ttf' %}") format(truetype);}
+
+body{background-image: url("{% static 'images/fondito.jpg' %}");}
+
+span{display: none;}
+
+br{display: none;}
+   </style>
+
+
+</body>
+</html>

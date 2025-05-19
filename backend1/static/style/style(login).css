@@ -1,0 +1,122 @@
+
+#ghost__containerl{
+   flex: 3 3 auto;}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(178, 170, 159);
+    background-repeat: no-repeat;
+    background-size:cover;
+    width: 100dvw;
+    height: 100dvh;
+    font-family: AnonymousPro;
+    font-weight: 400;}
+
+
+/* ---Bienvenido--- */
+#side__containerl{
+    flex: 5 5 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;}
+h2{
+    font-size: 16dvh;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    filter: drop-shadow(10px  10px 10px rgba(0, 0, 0, 0.47) );}
+#side__containerl >p{
+    font-size: 7dvh;
+    color: #fff;
+    text-align: center;
+    font-family: FuzzyBubbles}
+
+
+#containerl{
+    position: relative;
+    top: 5dvh;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60dvh;
+    height:70dvh;}
+
+
+/* ---Encabezado Formulario--- */
+h1{
+    margin: 2dvh 0;
+    font-size: 8dvh;
+    filter: drop-shadow(0px  10px 10px rgba(0, 0, 0, 0.47) );
+    color: white;}
+
+
+/* ---Formulario---- */
+#form__containerl{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#32302da7;
+    box-shadow: 0.8dvw 1dvw 20px 5px rgba(47, 47, 47, 0.82);
+    height: fit-content;
+    width: 85%;
+    font-size: 3dvh;
+    border-radius: 10px;}
+
+
+/* ---Labels--- */
+label{
+    font-weight: 800;
+    font-size: 3dvh;
+    color: white;
+    margin-bottom: 0.5dvh;}
+label:nth-child(2){
+    margin-top: 2dvh;}
+
+
+/*---Inputs---*/
+input{
+    width: 60%;
+    margin-bottom:3dvh;     
+    border-radius: 10px;
+    outline-color:#0000006f ;
+    background-color: rgba(226, 233, 211, 0.45);
+    padding: 1dvh;
+    border: none;
+    color: #fff;
+    border-bottom:0.3dvh solid #000000;
+    border-right: 0.2dvh solid #000000cc;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.477);}
+input:hover{
+    opacity: 0.7;}
+input::placeholder{
+    font-size: 3dvh;
+    padding: 0 10px;
+    color: #fff;}
+input[type="submit"]{
+    font-size: 3.5dvh;
+    border-radius: 30px;
+    background-color: #ffffff;
+    color: #000000;
+    width: 50%;
+    padding: 1.5dvh;}
+
+#form__containerl > p{
+    margin-bottom: 1dvh;
+    text-align: center;
+    color: #fff;}
+
+
+/*---Button Switching---*/
+#form__containerl > button {
+    padding: 1dvh;
+    border-radius: 20px;
+    margin: 1dvh 0;
+    width: 50%;}
+#form__containerl > button > a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 2.5dvh;}
