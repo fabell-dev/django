@@ -1,7 +1,86 @@
-<html>
- <h1>index</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="{% static 'icons/logo.svg' %}">
+    <title>Index</title>
+</head>
+<body>
+
+    <main>
+    <div>
+        <h2>Logeos:</h2>
+        <a href="login">Login</a>
+        <a href="register">Registro</a>
+        <a href="password_change">Cambio de Contraseña</a>
+    </div>
+
+    <div>
+        <h2>Principal:</h2>
+        <a href="dashboard">Dashboard</a>
+    </div>
+
+    <div>
+        <h2>Main:</h2>
+        <a href="information">Seccion Informativa</a>
+        <a href="show_products">Catalogo</a>
+        <a href="user_show">Informacoin de Usuario</a>
+    </div>
+
+    <div>
+        <h2>Footer:</h2>
+
+        <a href="about_us">Acerca de Nosotros</a>
+        <a href="contact">Contactanos</a>
+    </div>
+
+    <div>
+        <h2>Information Admin:</h2>
+        <a href="blogpost">blog_manage</a>
+        <a href="productos">product_manage</a>
+        <a href="user_info">info_user</a>
+    </div>
+
+</main>
 
 
+    <style>
+        *{padding: 0; margin: 0; box-sizing: border-box;}
+
+        main{
+            display: flex;
+            width: 100%;
+            height: 100dvh;
+            justify-content: center;}
 
 
+        a{
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 4dvh;
+            margin: 5dvh 0;
+            width: 100%;
+            transition: all 0.3s ease;}
+
+        a:visited{color: blue;}
+        a:hover{  scale: 1.1; text-decoration: underline;}
+        
+        h2{
+            text-align: center;
+            width: 100%;
+            font-size: 5dvh;
+            text-decoration: underline;}
+
+        div{
+            margin: 20dvh 8dvh;
+            display: inline-block;}
+
+        
+    </style>
+
+
+</body>
 </html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="{% static 'icons/logo.svg' %}">
+    <title>Acceso Denegado</title>
+</head>
+<body>
+    <main>
+        <h1>Acceso Denegado</h1>
+        <p>No tienes permisos para acceder a esta página.</p>
+        <a href="{% url 'dashboard' %}">Volver al Dashboard</a>
+    </main>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: AnonymousPro;
+            font-weight: 800;
+            background-image: url("{% static 'images/fondito2.png' %}");
+            background-size: cover;
+        }
+        main {text-align: center;color: white;}
+        h1 {font-size: 8dvh;}
+        p{font-size: 4dvh; font-weight: 400;}
+        a {
+            color: white;
+            font-weight: 400;
+            font-size: 6dvh;
+            text-decoration: none;
+            border: 2px solid white;
+            padding: 1dvh;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 1dvh;}
+        a:hover {
+            background: rgba(255,255,255,0.1);}
+    </style>
+</body>
+</html>

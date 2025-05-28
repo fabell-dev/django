@@ -1,7 +1,6 @@
 #encargado de convertir a json
 from rest_framework import serializers
-from .models import BlogPost
-from .models import Productos
+from .models import BlogPost, Productos, Comentarios
 
 class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,4 +13,9 @@ class BlogPostSerializer(serializers.ModelSerializer):
 class ProductosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Productos
-        fields = ["id", "nombre", "cantidad", "identificador", "ultima_modificacion"]
+        fields = ["id", "nombre", "cantidad", "precio", "identificador", "ultima_modificacion", "imagen"]
+        
+class ComentariosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentarios
+        fields = ["id_comentario","comentario"]

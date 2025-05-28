@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required, user_passes_test
 #se usa para ver en una web los resultados de la comunicacion con el framework
 from rest_framework import generics
 #obviamente hay que importar los modelos
 from .models import BlogPost
 #importar el serializador para trabajar en la web
 from .serializers import BlogPostSerializer
-from .models import Productos
-from .serializers import ProductosSerializer
+from .models import Productos, Comentarios
+from .serializers import ProductosSerializer, ComentariosSerializer
 from django.http import HttpResponse
-from . forms import CreateUserForm, LoginForm, ChangePasswordForm
+from . forms import CreateUserForm, LoginForm, ChangePasswordForm, ComentarioForm
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -17,6 +19,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 import secrets, string, json
 from django.http import HttpResponse
+import secrets, string, json, time
 
 # Create your views here.
 #se usa con el generico de retornar lista
@@ -41,6 +44,15 @@ class ProductosRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Productos.objects.all()
     serializer_class = ProductosSerializer
     lookup_field = "identificador"
+    
+class ComentarioPostListCreate(generics.ListCreateAPIView):
+    queryset = Comentarios.objects.all()
+    serializer_class = ComentariosSerializer
+    
+class ComentarioRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comentarios.objects.all()
+    serializer_class = ComentariosSerializer
+    lookup_field = "id_comentario"
 #direccion a la pagina fisica dentro del server
 #direccion a la pagina fisica dentro del server
 def homepage(request):
@@ -76,36 +88,41 @@ def register(request):
 
 
 def login(request):
-    
     form = LoginForm()
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
             username = request.POST.get('username')
             password = request.POST.get('password')
-            #chequeo de auntentificacion
             user = authenticate(request, username=username, password=password)
-            #si el usuario es existente logear
             if user is not None:
                 auth.login(request, user)
+                # Check if user is admin/superuser
+                if user.is_superuser:
+                    return redirect("admin_dashboard")
                 return redirect("dashboard")
             
     context = {'loginform':form}
-    
-    
     return render(request, 'api/login.html', context=context)
 
 
 #establece que es necesario login para entrar y redirecciona a la pagina del login
 @login_required(login_url="login")
 def dashboard(request):
+    if request.user.is_superuser:
+        return redirect("admin_dashboard")
     return render(request, 'api/dashboard.html')
+
+@login_required(login_url="login")
+@user_passes_test(lambda u: u.is_superuser)
+def admin_dashboard(request):
+    return render(request, 'api/dashboard(admin).html')
 
 #logout
 def user_logout(request):
     auth.logout(request)
     #redirecciona al index
-    return redirect("")
+    return redirect("login")
 
 #cambio de password
 @login_required(login_url="login")
@@ -161,8 +178,59 @@ def user_info(request):
     }
     response = HttpResponse(json.dumps(data, indent=4, sort_keys=True, default=str), content_type='application/json')
     return response
-        
-@login_required    
-def perfil(request):
-    return render(request, 'api/perfil.html')
+@login_required(login_url="login")
+def send_comentario(request):
+    form = ComentarioForm
+    if request.method == "POST":
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario_obj = request.POST.get('Comentario')
+            print(request.POST.get('Comentario'))
+            Comentarios.objects.create(comentario=comentario_obj)
+            time.sleep(2)
+            return redirect("dashboard")
+            
+            
+    context = {'comentarioform':form}
+    
+    
+    return render(request, 'api/send_comentario.html', context=context)
+
+@login_required(login_url="login")  
+def user_show(request):
+    return render(request, 'api/user_show.html')
+
+
+
+@login_required(login_url="login")
+def show_products(request):
+    return render(request, 'api/show_products.html')
+
+@login_required(login_url="login")
+def information(request):
+    return render(request, 'api/information.html')
+
+
+
+@login_required(login_url="login")
+def about_us(request):
+    return render(request, 'api/about_us.html')
+
+@login_required(login_url="login")
+def contact(request):
+    return render(request, 'api/contact.html')
+
+
+@login_required(login_url="login")
+@user_passes_test(lambda u: u.is_superuser)
+def edit_information(request):
+    return render(request, 'api/edit_information(admin).html')
+
+
+@login_required(login_url="login")
+@user_passes_test(lambda u: u.is_superuser)
+def edit_products(request):
+    return render(request, 'api/edit_products(admin).html')
+
+
 

@@ -38,3 +38,7 @@ class ChangePasswordForm(forms.Form):
     Contraseña_Antigua = forms.CharField(widget=PasswordInput())
     Nueva_Contraseña = forms.CharField(widget=PasswordInput())
     Confirmar_Contraseña = forms.CharField(widget=PasswordInput())
+    
+#Enviar comentario
+class ComentarioForm(forms.Form):
+    Comentario = forms.CharField(max_length=2048,label="Comentario",widget=TextInput())

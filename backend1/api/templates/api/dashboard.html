@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="{% static 'icons/logo.svg' %}"> 
     <link rel="stylesheet" href="{% static 'style/style(dashboard).css' %}">
-    <title>Crear Cuenta</title>
+    <title>Pagina Principal</title>
     <title>title</title>
 </head>
 <body>
@@ -19,15 +19,15 @@
                 <path d="M2 2a26.6 26.6 0 0 1 10 20c.9-6.82 1.5-9.5 4-14"/>
             </svg>
 
-            <a href="user_info">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+            <a href="user_show">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"  stroke-linecap="round" stroke-linejoin="round" >
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
                 </svg>
             </a>
 
             <a class="nav_link_close" href="{% url 'user-logout' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"  stroke-linecap="round" stroke-linejoin="round" >
                     <path d="m16 17 5-5-5-5"/>
                     <path d="M21 12H9"/>
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
@@ -51,7 +51,7 @@
                     <path d="M14 17.85V10H6.15"/>
                 </svg>
                 <p>Catálogo</p>
-                <a href="https://lucide.dev/icons/newspaper"></a>
+                <a href="show_products"></a>
             </div>
             <div class="card--select">
                 <p>Sección Informativa</p>
@@ -61,16 +61,16 @@
                     <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/>
                     <rect width="8" height="4" x="10" y="6" rx="1"/>
                 </svg>
-                <a href="https://lucide.dev/icons/newspaper"></a>
+                <a href="information"></a>
             </div>
         </div>
         </div>
         </div>
     </main>
     <footer>
-        <a href="#" class="footer--links">Sobre Nosotros</a>
-        <a href="#" class="footer--links">Contáctanos</a>
-        <a href="#" class="footer--links">Política de Seguridad</a>
+        <a href="about_us" class="footer--links">Sobre Nosotros</a>
+        <a href="contact" class="footer--links">Contáctanos</a>
+        <a href="{% static 'Política_de_Seguridad.pdf' %}" download class="footer--links">Política de Seguridad</a>
 
         <a href="#" class="footer--links--media">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"stroke-linecap="round" stroke-linejoin="round">
@@ -90,6 +90,7 @@
             </svg>
         </a>
         <a href="#" class="footer--links--media" class="arroz"></a>
+        
     </footer>
 
     <style>
@@ -118,31 +119,3 @@ body{
     </style>
 </body>
 </html>
-
-
-
-
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="{% static 'icons/logo.svg' %}"> 
-    <link rel="stylesheet" href="{% static 'style/style(dashboard).css' %}">
-    <title>Crear Cuenta</title>
-</head>
-<body>
-    <h1>Dashboard</h1>
-    
-
-
-<style>
-
-
-</style>
-    
-</body>
-</html> -->

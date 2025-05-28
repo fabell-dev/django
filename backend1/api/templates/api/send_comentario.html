@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      {% load static %}
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <link rel="icon" href="{% static 'icons/logo.svg' %}">
+   <link rel="stylesheet" href="{% static 'style/style(send_comentario).css' %}">
+   <title>Crear Cuenta</title>
+</head>
+<body>
+
+   <main>
+      <h1 id="titulo">Enviar Comentario</h1>
+      <form id="comentarioForm" method="POST" autocomplete="off">
+         {% csrf_token %}
+         {{comentarioform}}
+         <input class="form__submit" type="submit" value="Enviar"/>
+      </form>
+   </main>
+
+   <style>
+
+*{padding: 0;margin: 0;box-sizing: border-box;}
+
+@font-face {
+   font-family: AnonymousPro; font-weight: 400;
+   src: url("{% static 'fonts/AnonymousPro-Regular.ttf' %}") format(truetype);}
+
+@font-face {
+   font-family: AnonymousPro; font-weight: 800;
+   src: url("{% static 'fonts/AnonymousPro-Bold.ttf' %}") format(truetype);}
+
+@font-face {font-family: FuzzyBubbles;src: url("{% static 'fonts/FuzzyBubbles-Bold.ttf' %}") format(truetype);}
+
+   body{
+      color: #fff;
+      backdrop-filter: blur(10px);
+      height: 100dvh;
+      width: 100dvw;
+      background-color: initial;
+      background-image: url("{% static 'images/fondito2.png' %}");
+      background-size: cover;
+      background-repeat: no-repeat;}
+
+</style>
+
+   <script src="{% static 'scripts/script(send_comentario).js' %}"></script>
+   
+</body>
+</html>
