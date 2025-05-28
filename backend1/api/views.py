@@ -221,16 +221,25 @@ def contact(request):
     return render(request, 'api/contact.html')
 
 
+# Función para verificar si es admin
+def is_admin(user):
+    return user.is_superuser
+
+# Modificar la vista edit_information
 @login_required(login_url="login")
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(is_admin, login_url="not_pass")
 def edit_information(request):
     return render(request, 'api/edit_information(admin).html')
 
-
+# Modificar la vista edit_products  
 @login_required(login_url="login")
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(is_admin, login_url="not_pass")
 def edit_products(request):
     return render(request, 'api/edit_products(admin).html')
+
+# Agregar la vista not_pass
+def not_pass(request):
+    return render(request, 'api/not_pass.html')
 
 
 

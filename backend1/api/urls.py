@@ -55,7 +55,9 @@ urlpatterns = [
 
     path('edit_information',views.edit_information ,name="edit_information"),
 
-    path('edit_products',views.edit_products ,name="edit_products")
+    path('edit_products',views.edit_products ,name="edit_products"),
+
+    path('not_pass', views.not_pass, name="not_pass"),
     
     
 ]
