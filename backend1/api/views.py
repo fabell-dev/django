@@ -20,6 +20,7 @@ from django.urls import reverse_lazy
 import secrets, string, json
 from django.http import HttpResponse
 import secrets, string, json, time
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 #se usa con el generico de retornar lista
@@ -29,22 +30,53 @@ class BlogPostListCreate(generics.ListCreateAPIView):
     #especificar el serializador a usar cuando se retorna los datos
     serializer_class = BlogPostSerializer
 
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('not_pass')
+        return super().post(request, *args, **kwargs)
+
 #lo mismo de arriba pero para el REST
 class BlogPostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
     #este argumento hace que se busque por la llave, en este caso id
     lookup_field = "pk"
-    
+
+    def put(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('not_pass')
+        return super().put(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('not_pass')
+        return super().delete(request, *args, **kwargs)
+
 class ProductosListCreate(generics.ListCreateAPIView):
     queryset = Productos.objects.all()
     serializer_class = ProductosSerializer
-    
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('not_pass')
+        return super().post(request, *args, **kwargs)
+
+# Modificar la clase ProductosRetrieveUpdateDestroy
 class ProductosRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Productos.objects.all()
     serializer_class = ProductosSerializer
     lookup_field = "identificador"
-    
+
+    def put(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('not_pass')
+        return super().put(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('not_pass')
+        return super().delete(request, *args, **kwargs)
+
 class ComentarioPostListCreate(generics.ListCreateAPIView):
     queryset = Comentarios.objects.all()
     serializer_class = ComentariosSerializer
