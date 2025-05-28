@@ -7,12 +7,14 @@ body{
     font-weight: 800;
     backdrop-filter: blur(10px);}
 
-    h1{color: blue;}
     h4{color: aquamarine;}
 
 main {
-    padding: 4dvh;
-    margin-bottom: 15dvh;}
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 73dvh;}
 
 
 nav{
@@ -96,56 +98,65 @@ footer{
     height: min-content;
     width: min-content;}
 
-.form-container {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-}
 
-form {
+    
+.form-container {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    width: 100%;
+    margin:0 5dvh ;
+    height: 58dvh;}
+
+h2 {
+    color: white;
+    margin: 3dvh 0;
+    text-align: center;
+    font-size: 5dvh;}
+
+form{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
+    align-items: center;}
 
-input, textarea {
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
+
+label {
+    display: block;
     color: white;
-}
+    color: white;
+    margin: 0.5dvh 0;
+    text-align: center;
+    font-size: 3dvh;
+    font-weight: 400;}
+
+input,textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: rgba(255,255,255,0.9);}
+
+input{
+    width: 80% ;
+    padding: 0.5dvh 1dvh;
+    font-size: 3dvh;
+    margin-bottom: 2dvh;
+    color: black;}
 
 textarea {
-    min-height: 100px;
-    resize: vertical;
-}
+    width: 80% ;
+    font-size: 3dvh;
+    padding: 2dvh 3dvh;
+    resize: vertical;}
 
 button {
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid white;
+    padding: 1dvh 2dvh;
+    background: #4CAF50;
     color: white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 3dvh;
     transition: all 0.3s ease;
-}
+    margin-top: 3dvh;}
 
-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.news-list {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.news-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 0;
-    color: white;
-}
+button:hover {opacity: 0.7;}

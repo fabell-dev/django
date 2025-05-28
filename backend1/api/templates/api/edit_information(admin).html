@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        {% load static %}
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="{% static 'icons/logo.svg' %}">
     <link rel="stylesheet" href="{% static 'style/style(edit_information(admin)).css' %}">
     <title>Gestionar Noticias</title>
-    
 </head>
 <body>
-    
     <nav class="navbar">
         <a href="dashboard" class="navbar--logo"> 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  width="24" height="24" stroke="white" fill="none">
@@ -27,27 +25,31 @@
     </nav>
     <main>
         
-        <h1>Gestionar Noticias</h1>
         
-        <!-- Formulario para añadir noticias -->
+        <!-- Formulario para crear noticias -->
         <div class="form-container">
-            <h2>Añadir Nueva Noticia</h2>
-            <form id="addNewsForm" method="POST">
+            <h2>Crear Nueva Noticia</h2>
+            <form id="crear-noticia-form">
                 {% csrf_token %}
-                <input type="text" name="title" placeholder="Título" required>
-                <textarea name="content" placeholder="Contenido" required></textarea>
-                <button type="submit">Añadir Noticia</button>
+                <label for="crear-titulo">Título:</label>
+                <input type="text" id="crear-titulo" required>
+                <label for="crear-contenido">Contenido:</label>
+                <textarea id="crear-contenido" required></textarea>
+                <button type="submit">Crear Noticia</button>
             </form>
         </div>
 
         <!-- Formulario para editar noticias -->
         <div class="form-container">
             <h2>Editar Noticia</h2>
-            <form id="editNewsForm" method="POST">
+            <form id="editar-noticia-form">
                 {% csrf_token %}
-                <input type="number" name="id" placeholder="ID de la noticia" required>
-                <input type="text" name="title" placeholder="Nuevo título">
-                <textarea name="content" placeholder="Nuevo contenido"></textarea>
+                <label for="editar-id">ID de la Noticia:</label>
+                <input type="number" id="editar-id" required>
+                <label for="editar-titulo">Título:</label>
+                <input type="text" id="editar-titulo" required>
+                <label for="editar-contenido">Contenido:</label>
+                <textarea id="editar-contenido" required></textarea>
                 <button type="submit">Actualizar Noticia</button>
             </form>
         </div>
@@ -55,22 +57,15 @@
         <!-- Formulario para eliminar noticias -->
         <div class="form-container">
             <h2>Eliminar Noticia</h2>
-            <form id="deleteNewsForm" method="POST">
+            <form id="eliminar-noticia-form">
                 {% csrf_token %}
-                <input type="number" name="id" placeholder="ID de la noticia" required>
+                <label for="eliminar-id">ID de la Noticia:</label>
+                <input type="number" id="eliminar-id" required>
                 <button type="submit">Eliminar Noticia</button>
             </form>
         </div>
-
-        <!-- Lista de noticias existentes -->
-        <div class="news-list">
-            <h2>Noticias Existentes</h2>
-            <div id="newsList">
-                <!-- Las noticias se cargarán aquí dinámicamente -->
-            </div>
-        </div>
-
     </main>
+    
     <footer>
         <a href="about_us" class="footer--links">Sobre Nosotros</a>
         <a href="contact" class="footer--links">Contáctanos</a>
