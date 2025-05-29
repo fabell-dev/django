@@ -2,10 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const crearForm = document.getElementById('crear-noticia-form');
             const editarForm = document.getElementById('editar-noticia-form');
             const eliminarForm = document.getElementById('eliminar-noticia-form');
-            const noticiasContainer = document.getElementById('noticias-list');
             const formTitle = document.getElementById('form-title');
             const submitBtn = document.getElementById('submit-btn');
-            const cancelBtn = document.getElementById('cancel-btn');
             let editMode = false;
 
             // Crear noticia
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(() => {
                     crearForm.reset();
                     alert('Noticia creada exitosamente');
-                    loadNoticias();
                 })
                 .catch(error => alert('Error al crear la noticia'));
             });
@@ -58,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(() => {
                     editarForm.reset();
                     alert('Noticia actualizada exitosamente');
-                    loadNoticias();
                 })
                 .catch(error => alert(error.message));
             });
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.getElementById('editar-contenido').value = noticia.contenido;
                         formTitle.textContent = 'Editar Noticia';
                         submitBtn.textContent = 'Actualizar';
-                        cancelBtn.style.display = 'inline-block';
                         editMode = true;
                     });
             };
@@ -95,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!response.ok) throw new Error('Noticia no encontrada');
                 eliminarForm.reset();
                 alert('Noticia eliminada exitosamente');
-                loadNoticias();
             })
             .catch(error => alert(error.message));
         }
@@ -108,13 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 eliminarForm.reset();
                 formTitle.textContent = 'Crear Nueva Noticia';
                 submitBtn.textContent = 'Crear Noticia';
-                cancelBtn.style.display = 'none';
                 editMode = false;
             }
-
-            // Botón cancelar
-            cancelBtn.addEventListener('click', resetForm);
-
-            // Cargar noticias al inicio
-            loadNoticias();
+            
         });
