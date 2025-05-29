@@ -199,6 +199,9 @@ def user_info(request):
         email = user.email
         last_login = user.last_login
         date_joined = user.date_joined
+        isstaff= user.is_staff
+        issuperuser= user.is_superuser
+        
         
         data = {
         'nombre': first_name,
@@ -206,7 +209,11 @@ def user_info(request):
         'usuario': username,
         'email' : email,
         'login_reciente' : last_login, 
-        'fecha_registro' : date_joined
+        'fecha_registro' : date_joined,
+        'status_staff' : isstaff,
+        'status_superuser' : issuperuser
+
+        
     }
     response = HttpResponse(json.dumps(data, indent=4, sort_keys=True, default=str), content_type='application/json')
     return response

@@ -9,8 +9,27 @@ async function fetchBlogPosts() {
     }
 }
 
-function displayBlogPosts(posts) {
+async function checkAdminStatus() {
+    try {
+        const response = await fetch('/user_info');
+        if (!response.ok) {
+            throw new Error('Error al obtener información del usuario');
+        }
+        const userData = await response.json();
+        return {
+            isAdmin: userData.status_staff || userData.status_superuser
+        };
+    } catch (error) {
+        console.error('Error:', error);
+        return { isAdmin: false };
+    }
+}
+
+async function displayBlogPosts(posts) {
     const mainContainer = document.querySelector('main');
+    const { isAdmin } = await checkAdminStatus();
+    
+    mainContainer.innerHTML = ''; // Limpiar contenedor
     
     posts.forEach((post, index) => {
         const articleDiv = document.createElement('div');
@@ -25,6 +44,7 @@ function displayBlogPosts(posts) {
         
         articleDiv.innerHTML = `
             <div class="post-header">
+                ${isAdmin ? `<span class="post-id">ID: ${post.id}</span>` : ''}
                 <span class="post-date">${fecha}</span>
             </div>
             <h2>${post.titulo}</h2>
@@ -38,7 +58,7 @@ function displayBlogPosts(posts) {
 // Initialize when page loads
 async function initialize() {
     const posts = await fetchBlogPosts();
-    displayBlogPosts(posts);
+    await displayBlogPosts(posts);
 }
 
 initialize();
