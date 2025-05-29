@@ -101,13 +101,14 @@ footer{
 
 
 
-   
+
 .form-container {
     background: rgba(255,255,255,0.1);
     border-radius: 10px;
     width: 100%;
-    margin:0 5dvh ;
-    height: 58dvh;}
+    margin:0 5dvh;
+    transform: translateY(5dvh);
+    height: 77dvh;}
 
 h2 {
     color: white;
@@ -150,7 +151,14 @@ textarea {
     padding: 2dvh 3dvh;
     resize: vertical;}
 
+#crear-imagen,#editar-imagen {
+    height: 6dvh;
+    width: 70%;
+    font-size: 2dvh;
+}
+
 button {
+    margin-bottom: 1dvh;
     padding: 1dvh 2dvh;
     background: #4CAF50;
     color: white;

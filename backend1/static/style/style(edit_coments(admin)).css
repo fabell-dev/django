@@ -60,106 +60,52 @@ nav>a:hover{
 
 
 
-footer{
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    flex-direction: row;
-    width: 100%;
-    height: 13dvh;
-    background-color: #ffffff50;}
-
-.footer--links,.footer--links--media{
-    flex: 5 5 auto;
-    position: relative;
-    top: 0;bottom: 0;
-    margin: auto 0;
-    display: inline-block;
-    color: #fff;
-    text-decoration: none;
-    font-size: 3.5dvh;
-    transition: all 0.3s ease;}
-.footer--links:first-child{
-    margin-left: 8dvh;}
-.footer--links:hover,.footer--links--media:hover:hover{
-    scale: 1.2;}
-
-.footer--links--media>svg{
-    position: relative;
-    margin: 0;
-    height: 9dvh;
-    width: fit-content;
-    fill: transparent;
-    stroke: #ffffff;}
-
-.footer--links--media:last-child{
-    flex: 1 1 auto;
-    height: min-content;
-    width: min-content;}
-
-
-    
-.form-container {
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    width: 100%;
-    margin:0 5dvh ;
-    height: 58dvh;}
-
 .comments-container {
+    align-self: center;
+    transform: translateY(10dvh);
     background: rgba(255,255,255,0.1);
     border-radius: 10px;
     width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    height: 58dvh;
-    overflow-y: auto;
-}
+    height: 70dvh;
+    overflow-y: auto;}
 
 .comments-container h2 {
+    margin: 3dvh 0;
     color: white;
     text-align: center;
     margin-bottom: 20px;
-    font-size: 2em;
-}
+    font-size: 6dvh;}
 
 .comment-item {
+    margin: auto;
+    width: 90%;
     background: rgba(255,255,255,0.2);
     border-radius: 5px;
-    padding: 15px;
+    padding: 2dvh;
     margin-bottom: 15px;
-    color: white;
-}
+    color: white;}
 
 .comment-item p {
     margin: 5px 0;
-    font-size: 1.1em;
-}
+    font-size: 3dvh;}
 
 .comment-item .comment-id {
     color: #aaa;
-    font-size: 0.9em;
-}
+    font-size: 0.9em;}
 
 .comment-item .comment-text {
-    font-weight: 400;
-}
+    font-weight: 400;}
 
 /* Estilo para la barra de desplazamiento */
 .comments-container::-webkit-scrollbar {
-    width: 8px;
-}
+    width: 8px;}
 
 .comments-container::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
-}
+    background: rgba(255,255,255,0.1);}
 
 .comments-container::-webkit-scrollbar-thumb {
     background: rgba(255,255,255,0.3);
-    border-radius: 4px;
-}
+    border-radius: 4px;}
 
 .comments-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(255,255,255,0.4);
-}
+    background: rgba(255,255,255,0.4);}

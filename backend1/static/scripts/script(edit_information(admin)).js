@@ -60,6 +60,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => alert(error.message));
             });
+
+            // Cargar datos del producto al introducir identificador
+            document.getElementById('editar-id').addEventListener('change', function() {
+                const identificador = this.value;
+                if(identificador) {
+                    fetch(`/blogpost/${identificador}/`)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Producto no encontrado');
+                            return response.json();
+                        })
+                        .then(producto => {
+                            document.getElementById('editar-titulo').value = producto.titulo;
+                            document.getElementById('editar-contenido').value = producto.contenido;
+                        })
+                        .catch(error => {
+                            alert(error.message);
+                            document.getElementById('editar-titulo').value = '';
+                            document.getElementById('editar-contenido').value = '';
+                        });
+                }
+            }); 
             
 
 
@@ -93,28 +114,3 @@ document.addEventListener('DOMContentLoaded', function() {
                 editMode = false;}
     
         });
-
-
-
-          // Cargar datos del producto al introducir identificador
-            // document.getElementById('editar-identificador').addEventListener('change', function() {
-            //     const identificador = this.value;
-            //     if(identificador) {
-            //         fetch(`/productos/${identificador}/`)
-            //             .then(response => {
-            //                 if (!response.ok) throw new Error('Producto no encontrado');
-            //                 return response.json();
-            //             })
-            //             .then(producto => {
-            //                 document.getElementById('editar-nombre').value = producto.nombre;
-            //                 document.getElementById('editar-cantidad').value = producto.cantidad;
-            //                 document.getElementById('editar-precio').value = producto.precio;
-            //             })
-            //             .catch(error => {
-            //                 alert(error.message);
-            //                 document.getElementById('editar-nombre').value = '';
-            //                 document.getElementById('editar-cantidad').value = '';
-            //                 document.getElementById('editar-precio').value = '';
-            //             });
-            //     }
-            // }); 

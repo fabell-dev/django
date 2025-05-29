@@ -60,47 +60,9 @@ nav>a:hover{
     scale: 1.1;}
 
 
-
-footer{
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    flex-direction: row;
-    width: 100%;
-    height: 13dvh;
-    background-color: #ffffff50;}
-
-.footer--links,.footer--links--media{
-    flex: 5 5 auto;
-    position: relative;
-    top: 0;bottom: 0;
-    margin: auto 0;
-    display: inline-block;
-    color: #fff;
-    text-decoration: none;
-    font-size: 3.5dvh;
-    transition: all 0.3s ease;}
-.footer--links:first-child{
-    margin-left: 8dvh;}
-.footer--links:hover,.footer--links--media:hover:hover{
-    scale: 1.2;}
-
-.footer--links--media>svg{
-    position: relative;
-    margin: 0;
-    height: 9dvh;
-    width: fit-content;
-    fill: transparent;
-    stroke: #ffffff;}
-
-.footer--links--media:last-child{
-    flex: 1 1 auto;
-    height: min-content;
-    width: min-content;}
-
-
     
 .form-container {
+    transform: translateY(8dvh);
     background: rgba(255,255,255,0.1);
     border-radius: 10px;
     width: 100%;

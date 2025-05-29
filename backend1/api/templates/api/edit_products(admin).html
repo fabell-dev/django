@@ -30,27 +30,17 @@
         <div class="form-container">
             <h2>Crear Nuevo Producto</h2>
             <form id="crear-producto-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
+                {% csrf_token %} 
                     <label for="crear-identificador">Identificador:</label>
                     <input type="number" id="crear-identificador" required>
-                </div>
-                <div class="form-group">
                     <label for="crear-nombre">Nombre:</label>
                     <input type="text" id="crear-nombre" required>
-                </div>
-                <div class="form-group">
                     <label for="crear-cantidad">Cantidad:</label>
                     <input type="number" id="crear-cantidad" required>
-                </div>
-                <div class="form-group">
                     <label for="crear-precio">Precio:</label>
                     <input type="number" step="0.01" id="crear-precio" required>
-                </div>
-                <div class="form-group">
                     <label for="crear-imagen">Imagen:</label>
                     <input type="file" id="crear-imagen" accept="image/*" required>
-                </div>
                 <button type="submit">Crear Producto</button>
             </form>
         </div>
