@@ -269,6 +269,11 @@ def edit_information(request):
 def edit_products(request):
     return render(request, 'api/edit_products(admin).html')
 
+@login_required(login_url="login")
+@user_passes_test(is_admin, login_url="not_pass")
+def edit_coments(request):
+    return render(request, 'api/edit_coments(admin).html')
+
 # Agregar la vista not_pass
 def not_pass(request):
     return render(request, 'api/not_pass.html')

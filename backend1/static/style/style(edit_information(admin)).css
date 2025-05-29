@@ -46,13 +46,13 @@ nav>a>svg{height: 100%; width: auto;}
 /*---Links---*/
 nav>a:nth-child(2){
     position: absolute;
-    right: 30%;}
+    right:5%;}
 nav>a:nth-child(3){
     position: absolute;
-    right: 20%;}
+    right: 25%;}
 nav>a:nth-child(4){
     position: absolute;
-    right: 3%;}
+    right:50%;}
 
 nav>a:hover{
     opacity: 0.5;

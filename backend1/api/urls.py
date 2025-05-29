@@ -57,6 +57,8 @@ urlpatterns = [
 
     path('edit_products',views.edit_products ,name="edit_products"),
 
+    path('edit_coments',views.edit_coments ,name="edit_coments"),
+
     path('not_pass', views.not_pass, name="not_pass"),
     
     

@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        {% load static %}
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="{% static 'icons/logo.svg' %}">
-    <link rel="stylesheet" href="{% static 'style/style(edit_products(admin)).css' %}">
-    <title>Gestionar Catalogo</title>
-    
+    <link rel="stylesheet" href="{% static 'style/style(edit_coments(admin)).css' %}">
+    <title>Gestionar Noticias</title>
 </head>
 <body>
-    
     <nav class="navbar">
         <a href="dashboard" class="navbar--logo"> 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  width="24" height="24" stroke="white" fill="none">
@@ -21,17 +19,15 @@
         </a>
 
         <a class="nav_link_close" href="{% url 'user-logout' %}">Cerrar Sesión</a>
-        <a href="edit_information">Gestionar Noticias</a> 
-        <a href="edit_coments">Gestionar Comentarios</a>
+        <a href="edit_products">Gestionar Catalogo</a>
+        <a href="edit_information">Geestionar Noticias</a>
         
 
     </nav>
     <main>
         
-        <h1>Gestionar Productos</h1>
-        <h4><a href="show_products">Ir al Catalogo</a></h4>
-
     </main>
+    
     <footer>
         <a href="about_us" class="footer--links">Sobre Nosotros</a>
         <a href="contact" class="footer--links">Contáctanos</a>
@@ -58,8 +54,7 @@
         
     </footer>
     
-
-    <script src="{% static 'scripts/script(edit_products(admin)).js' %}"></script>
+<script src="{% static 'scripts/script(edit_coments(admin)).js' %}"></script>
 
     <style>
         
