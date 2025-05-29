@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const crearForm = document.getElementById('crear-noticia-form');
             const editarForm = document.getElementById('editar-noticia-form');
             const eliminarForm = document.getElementById('eliminar-noticia-form');
-            const formTitle = document.getElementById('form-title');
-            const submitBtn = document.getElementById('submit-btn');
             let editMode = false;
+
+
 
             // Crear noticia
             crearForm.addEventListener('submit', function(e) {
@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => alert('Error al crear la noticia'));
             });
+
+
 
 
             // Editar noticia
@@ -60,19 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
 
-            // Función para editar
-            window.editNoticia = function(id) {
-                fetch(`/blogpost/${id}/`)
-                    .then(response => response.json())
-                    .then(noticia => {
-                        document.getElementById('editar-id').value = noticia.id;
-                        document.getElementById('editar-titulo').value = noticia.titulo;
-                        document.getElementById('editar-contenido').value = noticia.contenido;
-                        formTitle.textContent = 'Editar Noticia';
-                        submitBtn.textContent = 'Actualizar';
-                        editMode = true;
-                    });
-            };
+
 
             // Eliminar noticia
             eliminarForm.addEventListener('submit', function(e) {
@@ -100,9 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 crearForm.reset();
                 editarForm.reset();
                 eliminarForm.reset();
-                formTitle.textContent = 'Crear Nueva Noticia';
-                submitBtn.textContent = 'Crear Noticia';
-                editMode = false;
-            }
-            
+                editMode = false;}
+    
         });
