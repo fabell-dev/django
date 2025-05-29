@@ -8,28 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const cancelBtn = document.getElementById('cancel-btn');
             let editMode = false;
 
-            // Cargar noticias existentes
-            function loadNoticias() {
-                fetch('/blogpost/')
-                    .then(response => response.json())
-                    .then(noticias => {
-                        noticiasContainer.innerHTML = '';
-                        noticias.forEach(noticia => {
-                            const noticiaEl = document.createElement('div');
-                            noticiaEl.className = 'noticia-item';
-                            noticiaEl.innerHTML = `
-                                <h3>${noticia.titulo}</h3>
-                                <p>${noticia.contenido}</p>
-                                <div class="noticia-actions">
-                                    <button onclick="editNoticia(${noticia.id})">Editar</button>
-                                    <button onclick="deleteNoticia(${noticia.id})">Eliminar</button>
-                                </div>
-                            `;
-                            noticiasContainer.appendChild(noticiaEl);
-                        });
-                    });
-            }
-
             // Crear noticia
             crearForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -54,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => alert('Error al crear la noticia'));
             });
+
 
             // Editar noticia
             editarForm.addEventListener('submit', function(e) {
@@ -83,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => alert(error.message));
             });
+            
 
             // Función para editar
             window.editNoticia = function(id) {

@@ -11,8 +11,11 @@ body{
     h4{color: aquamarine;}
 
 main {
-    padding: 4dvh;
-    margin-bottom: 15dvh;}
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 73dvh;}
 
 
 nav{
