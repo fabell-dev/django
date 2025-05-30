@@ -21,6 +21,8 @@ import secrets, string, json
 from django.http import HttpResponse
 import secrets, string, json, time
 from django.core.exceptions import PermissionDenied
+import os
+from django.conf import settings
 
 # Create your views here.
 #se usa con el generico de retornar lista
@@ -70,11 +72,33 @@ class ProductosRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     def put(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('not_pass')
+        
+        # Get the existing product
+        producto = self.get_object()
+        
+        # Check if we're replacing the image
+        if request.FILES.get('imagen'):
+            # Delete old image if it exists
+            if producto.imagen:
+                old_image_path = os.path.join(settings.MEDIA_ROOT, str(producto.imagen))
+                if os.path.isfile(old_image_path):
+                    os.remove(old_image_path)
+        
         return super().put(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('not_pass')
+            
+        # Get the product before deleting to handle image cleanup
+        producto = self.get_object()
+        
+        # Delete the associated image file if it exists
+        if producto.imagen:
+            image_path = os.path.join(settings.MEDIA_ROOT, str(producto.imagen))
+            if os.path.isfile(image_path):
+                os.remove(image_path)
+                
         return super().delete(request, *args, **kwargs)
 
 class ComentarioPostListCreate(generics.ListCreateAPIView):

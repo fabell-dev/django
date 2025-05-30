@@ -49,7 +49,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => alert(error.message));
             });
 
+            // Editar producto
+            editarForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData();
 
+                // Obtener los valores de los campos
+                const identificador = document.getElementById('editar-identificador').value;
+                formData.append('identificador', document.getElementById('editar-identificador').value);
+                formData.append('nombre', document.getElementById('editar-nombre').value);
+                formData.append('cantidad', document.getElementById('editar-cantidad').value);
+                formData.append('precio', document.getElementById('editar-precio').value);
+                formData.append('imagen', document.getElementById('editar-imagen').value);
+
+                // Manejar la imagen
+                const imageFile = document.getElementById('editar-imagen').files[0];
+                if (imageFile) {
+                    formData.append('imagen', imageFile);
+                    formData.append('replace_image', 'true');
+                }
+
+                fetch(`/productos/${identificador}/`, {
+                    method: 'PUT',
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Producto no encontrado');
+                    return response.json();
+                })
+                .then(() => {
+                    editarForm.reset();
+                    alert('Producto actualizado exitosamente');
+                })
+                .catch(error => alert(error.message));
+            });
 
             // Cargar datos del producto al introducir identificador
             document.getElementById('editar-identificador').addEventListener('change', function() {
@@ -73,43 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             document.getElementById('editar-precio').value = '';
                         });
                 }
-            });
-
-
-
-            // Editar producto
-            editarForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const formData = new FormData();
-
-                // Obtener los valores de los campos
-                const identificador = document.getElementById('editar-identificador').value;
-                formData.append('identificador', document.getElementById('editar-identificador').value);
-                formData.append('nombre', document.getElementById('editar-nombre').value);
-                formData.append('cantidad', document.getElementById('editar-cantidad').value);
-                formData.append('precio', document.getElementById('editar-precio').value);
-                
-                const imageFile = document.getElementById('editar-imagen').files[0];
-                if (imageFile) {
-                    formData.append('imagen', imageFile);
-                }
-
-                fetch(`/productos/${identificador}/`, {
-                    method: 'PUT',
-                    headers: {
-                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                    },
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error('Producto no encontrado');
-                    return response.json();
-                })
-                .then(() => {
-                    editarForm.reset();
-                    alert('Producto actualizado exitosamente');
-                })
-                .catch(error => alert(error.message));
             });
             
 

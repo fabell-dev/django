@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-            // Crear noticia
+            //-----Crear noticia-----
             crearForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const data = {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-            // Editar noticia
+            //----Editar noticia----
             editarForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const id = document.getElementById('editar-id').value;
