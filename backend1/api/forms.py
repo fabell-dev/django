@@ -35,9 +35,9 @@ class LoginForm(AuthenticationForm):
 #cambio de password
 class ChangePasswordForm(forms.Form):
     #llenado de campos
-    Contraseña_Antigua = forms.CharField(widget=PasswordInput())
-    Nueva_Contraseña = forms.CharField(widget=PasswordInput())
-    Confirmar_Contraseña = forms.CharField(widget=PasswordInput())
+    old_password = forms.CharField(widget=PasswordInput(),label="Contraseña Antigua")
+    new_password = forms.CharField(widget=PasswordInput(),label="Contraseña Nueva")
+    confirm_password = forms.CharField(widget=PasswordInput(),label="Confirmar Contraseña")
     
 #Enviar comentario
 class ComentarioForm(forms.Form):

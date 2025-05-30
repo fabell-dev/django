@@ -136,13 +136,6 @@ def register(request):
     return render(request, 'api/register.html', context=context)
 
 
-
-
-
-
-
-
-
 def login(request):
     form = LoginForm()
     if request.method == "POST":
@@ -202,12 +195,6 @@ def password_change(request):
             else:
                 print("error")
                 redirect("login")
-
-    
-    
-    
-    
-    
     
     context = {'ChangePasswordForm' : form}
     return render(request, 'api/password_change.html',context=context)
