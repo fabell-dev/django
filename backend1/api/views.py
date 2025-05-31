@@ -180,24 +180,52 @@ def password_change(request):
     if request.method == "POST":
         form = ChangePasswordForm(request.POST)
         if form.is_valid():
-            #se obtienen los valores del formulario/request para hacer las comparaciones
             old_password = request.POST.get('old_password')
             new_password = request.POST.get('new_password')
             confirm_password = request.POST.get('confirm_password')
-            #se obtiene el usuario actualmente loggeado
             user = request.user
-            #chequeo para cambiar la password
-            if new_password == confirm_password and new_password != old_password and user.check_password(old_password) == 1:
+
+            # Validaciones
+            if not user.check_password(old_password):
+                return render(request, 'api/password_change.html', {
+                    'ChangePasswordForm': form,
+                    'error': 'La contraseña actual es incorrecta'
+                })
+
+            if new_password != confirm_password:
+                return render(request, 'api/password_change.html', {
+                    'ChangePasswordForm': form,
+                    'error': 'Las contraseñas nuevas no coinciden'
+                })
+
+            if new_password == old_password:
+                return render(request, 'api/password_change.html', {
+                    'ChangePasswordForm': form,
+                    'error': 'La nueva contraseña debe ser diferente a la actual'
+                })
+
+            if len(new_password) < 8:
+                return render(request, 'api/password_change.html', {
+                    'ChangePasswordForm': form,
+                    'error': 'La contraseña debe tener al menos 8 caracteres'
+                })
+
+            # Si pasa todas las validaciones
+            try:
                 user.set_password(new_password)
                 user.save()
-                redirect("login")
-                print("login")
-            else:
-                print("error")
-                redirect("login")
+                auth.logout(request)  # Cerrar sesión actual
+                # Agregar mensaje de éxito a la sesión
+                request.session['password_changed'] = True
+                return redirect("login")
+            except Exception as e:
+                return render(request, 'api/password_change.html', {
+                    'ChangePasswordForm': form,
+                    'error': 'Error al cambiar la contraseña: ' + str(e)
+                })
     
-    context = {'ChangePasswordForm' : form}
-    return render(request, 'api/password_change.html',context=context)
+    context = {'ChangePasswordForm': form}
+    return render(request, 'api/password_change.html', context=context)
 
 #retornar informacion del usuario actual
 @login_required(login_url="login")

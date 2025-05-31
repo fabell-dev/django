@@ -1,6 +1,6 @@
 
 #ghost__containerl{
-   flex: 3 3 auto;}
+    flex: 3 3 auto;}
 
 body{
     display: flex;
@@ -13,7 +13,18 @@ body{
     height: 100dvh;
     font-family: AnonymousPro;
     font-weight: 400;}
+    
 
+.success-message{
+    position: absolute;
+    text-align: center;
+    bottom: 5dvh;
+    color: #fff;
+    font-size: 3dvh;
+    font-weight: 800;
+    text-decoration: underline;
+    width: 100%;
+}
 
 /* ---Bienvenido--- */
 #side__containerl{

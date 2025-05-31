@@ -25,6 +25,12 @@
       <p>¿No tienes una Cuenta?</p>
       <button type="button"><a href="register">Crear Cuenta</a></button>
    </form>
+      {% if request.session.password_changed %}
+         <div class="success-message">
+               Contraseña cambiada exitosamente.
+         </div>
+         {% with None as request.session.password_changed %}{% endwith %}
+      {% endif %}
    </div>
 
    <div id="ghost__containerl"></div>
