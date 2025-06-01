@@ -13,9 +13,9 @@ class BlogPostSerializer(serializers.ModelSerializer):
 class ProductosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Productos
-        fields = ["id", "nombre", "cantidad", "precio", "identificador", "ultima_modificacion", "imagen"]
+        fields = ["id", "nombre", "cantidad", "precio", "ultima_modificacion", "imagen"]
         
 class ComentariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comentarios
-        fields = ["id_comentario","comentario"]
+        fields = ["id","comentario","fecha_creacion"]

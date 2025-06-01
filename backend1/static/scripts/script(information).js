@@ -31,7 +31,7 @@ async function displayBlogPosts(posts) {
     
     mainContainer.innerHTML = ''; // Limpiar contenedor
     
-    posts.forEach((post, index) => {
+    posts.forEach((post) => {
         const articleDiv = document.createElement('div');
         articleDiv.className = 'blog-post';
         
@@ -44,19 +44,17 @@ async function displayBlogPosts(posts) {
         
         articleDiv.innerHTML = `
             <div class="post-header">
-                ${isAdmin ? `<span class="post-id">ID: ${post.id}</span>` : ''}
                 <span class="post-date">${fecha}</span>
             </div>
             <h2>${post.titulo}</h2>
             <p>${post.contenido}</p>
         `;
-        
         mainContainer.appendChild(articleDiv);
     });
 }
 
 // Initialize when page loads
-async function initialize() {
+async function initialize(){
     const posts = await fetchBlogPosts();
     await displayBlogPosts(posts);
 }

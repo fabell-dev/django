@@ -14,7 +14,7 @@ urlpatterns = [
          ),
     path ("productos/", views.ProductosListCreate.as_view(), name="Productos-view-create"),
     path (
-          "productos/<str:identificador>/",
+          "productos/<int:pk>/",
           views.ProductosRetrieveUpdateDestroy.as_view(),
           name="ProductosREST" 
         
@@ -22,7 +22,7 @@ urlpatterns = [
     ),
     path ("comentario/", views.ComentarioPostListCreate.as_view(), name = "comentario"),
     
-    path ("comentario/<int:id_comentario>/", views.ComentarioRetrieveUpdateDestroy.as_view(),name="Comentarios-view-create"),
+    path ("comentario/<int:pk>/", views.ComentarioRetrieveUpdateDestroy.as_view(),name="Comentarios-view-create"),
     
     path('send_comentario',views.send_comentario, name="send_comentario"),
     

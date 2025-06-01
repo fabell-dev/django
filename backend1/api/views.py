@@ -67,7 +67,7 @@ class ProductosListCreate(generics.ListCreateAPIView):
 class ProductosRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Productos.objects.all()
     serializer_class = ProductosSerializer
-    lookup_field = "identificador"
+    lookup_field = "pk"
 
     def put(self, request, *args, **kwargs):
         if not request.user.is_superuser:
@@ -108,7 +108,7 @@ class ComentarioPostListCreate(generics.ListCreateAPIView):
 class ComentarioRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comentarios.objects.all()
     serializer_class = ComentariosSerializer
-    lookup_field = "id_comentario"
+    lookup_field = "pk"
 #direccion a la pagina fisica dentro del server
 #direccion a la pagina fisica dentro del server
 def homepage(request):

@@ -14,7 +14,6 @@ class Productos(models.Model):
     nombre = models.CharField(max_length=255)
     cantidad = models.IntegerField()
     precio = models.IntegerField()
-    identificador = models.CharField(max_length=12)
     ultima_modificacion = models.DateTimeField(auto_now_add=True)
     imagen = models.ImageField(upload_to='Productos/', blank=True, null=True)
     
@@ -30,8 +29,8 @@ class Productos(models.Model):
         return self.nombre
     
 class Comentarios(models.Model):
-    id_comentario = models.IntegerField(primary_key=True, blank=False, null=False,unique=True)
     comentario = models.CharField(max_length=2048)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.comentario
