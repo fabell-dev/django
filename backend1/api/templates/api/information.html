@@ -44,6 +44,19 @@
                 <button type="submit">Crear Noticia</button>
             </form>
         </div>
+        <!-- Formulario para editar noticias -->
+        <div class="form-container , form__container__edit">
+            <h2>Editar Noticia</h2>
+            <form id="editar-noticia-form">
+                {% csrf_token %}
+                <label for="editar-titulo">Título:</label>
+                <input type="text" id="editar-titulo" required>
+                <label for="editar-contenido">Contenido:</label>
+                <textarea id="editar-contenido" required></textarea>
+                <button type="button" id="cancelar-crear-noticia">Cancelar</button>
+                <button type="submit">Actualizar Noticia</button>
+            </form>
+        </div>
     </aside>
     <main id="news__container">
         <h1>Noticias Recientes</h1>
@@ -75,7 +88,6 @@
     </footer>
     
     <script src="{% static 'scripts/script(information).js' %}"></script>
-    <script src="{% static 'scripts/script(edit_information(admin)).js' %}"></script>
     <style>
         
     body{

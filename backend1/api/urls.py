@@ -53,8 +53,6 @@ urlpatterns = [
 
     path('information',views.information ,name="information"),
 
-    path('edit_information',views.edit_information ,name="edit_information"),
-
     path('edit_products',views.edit_products ,name="edit_products"),
 
     path('edit_coments',views.edit_coments ,name="edit_coments"),
