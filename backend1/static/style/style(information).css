@@ -5,12 +5,22 @@ body{
     font-family: AnonymousPro;
     font-weight: 800;}
 
+aside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;}
+
+h2{
+    color: #fff;}
+
 main {
     margin: 2dvh 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;}
+    width: 100%;
+    height: fit-content;}
 
 .blog-post {
     background: #8c8c8c;
@@ -59,7 +69,7 @@ nav{
     flex-direction: row;
     width: 100%;
     height: 14dvh;
-    background-color: #ffffff50;}
+    background-color: #383636;}
 
 nav>a{
     font-size: 4dvh;
@@ -139,3 +149,78 @@ footer{
     flex: 1 1 auto;
     height: min-content;
     width: min-content;}
+
+
+/* Parte de Formularios Administrativos */
+.form-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    width: 100%;
+    margin:0 5dvh ;
+    height: 58dvh;}
+
+h2 {
+    color: white;
+    margin: 3dvh 0;
+    text-align: center;
+    font-size: 5dvh;}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;}
+
+
+label {
+    display: block;
+    color: white;
+    color: white;
+    margin: 0.5dvh 0;
+    text-align: center;
+    font-size: 3dvh;
+    font-weight: 400;}
+
+input,textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: rgba(255,255,255,0.9);}
+
+input{
+    width: 80% ;
+    padding: 0.5dvh 1dvh;
+    font-size: 3dvh;
+    margin-bottom: 2dvh;
+    color: black;}
+
+textarea {
+    width: 80% ;
+    font-size: 3dvh;
+    padding: 2dvh 3dvh;
+    resize: vertical;}
+
+button {
+    padding: 1dvh 2dvh;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 3dvh;
+    transition: all 0.3s ease;
+    margin-top: 3dvh;}
+
+button:hover {opacity: 0.7;}
+
+#form__add__despoy{
+    margin: 0 ;
+    margin-bottom: 2dvh;
+}
+
+.form__container__add{
+    height: 50dvh;
+    width: 50% }

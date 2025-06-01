@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(() => {
                     crearForm.reset();
+                     // Restablecer los displays a sus valores predeterminados
+                    formContainer.style.display = 'none';
+                    newscontainer.style.display = 'flex';
                     alert('Noticia creada exitosamente');
                 })
                 .catch(error => alert('Error al crear la noticia'));

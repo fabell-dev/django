@@ -27,8 +27,26 @@
         <a class="nav_link_close" href="{% url 'user-logout' %}">Cerrar Sesión</a>
 
     </nav>
-    <main>
+
+    <aside> 
+        <h2>Panel Administrativo</h2>
+        <button id="form__add__despoy">Añadir Noticia</button>
         
+        <!-- Formulario para crear noticias -->
+        <div class="form-container , form__container__add" id="form-container">
+            <h2>Crear Nueva Noticia</h2>
+            <form id="crear-producto-form">
+                {% csrf_token %}
+                <label for="crear-titulo">Título:</label>
+                <input type="text" id="crear-titulo" required>
+                <label for="crear-contenido">Contenido:</label>
+                <textarea id="crear-contenido" required></textarea>
+                <button type="submit">Crear Noticia</button>
+            </form>
+        </div>
+    </aside>
+    <main id="news__container">
+        <h1>Noticias Recientes</h1>
     </main>
     <footer>
         <a href="about_us" class="footer--links">Sobre Nosotros</a>
@@ -57,13 +75,15 @@
     </footer>
     
     <script src="{% static 'scripts/script(information).js' %}"></script>
+    <script src="{% static 'scripts/script(edit_information(admin)).js' %}"></script>
     <style>
         
     body{
     background-color: initial;
     background-image: url("{% static 'images/fondito2.png' %}");
     background-size: cover;
-    background-repeat: no-repeat;}
+    background-repeat: no-repeat;
+    height: 100% !important;}
 
 @font-face {
     font-family: AnonymousPro; font-weight: 400;
