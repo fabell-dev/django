@@ -1,49 +1,36 @@
+// -------- Funciones principales para mostrar noticias --------
+
+// Obtener noticias del servidor
 async function fetchBlogPosts() {
     try {
         const response = await fetch('blogpost');
-        const posts = await response.json();
-        return posts;
+        return await response.json();
     } catch (error) {
         console.error('Error:', error);
         return [];
     }
 }
 
-async function checkAdminStatus() {
-    try {
-        const response = await fetch('/user_info');
-        if (!response.ok) {
-            throw new Error('Error al obtener información del usuario');
-        }
-        const userData = await response.json();
-        return {
-            isAdmin: userData.status_staff || userData.status_superuser
-        };
-    } catch (error) {
-        console.error('Error:', error);
-        return { isAdmin: false };
-    }
-}
-
+// Mostrar noticias en el contenedor principal
 async function displayBlogPosts(posts) {
     const mainContainer = document.querySelector('main');
     const { isStaff, isSuperuser } = await checkAdminStatus();
     const isAdmin = isStaff || isSuperuser;
     
-    mainContainer.innerHTML = ''; // Limpiar contenedor
+    mainContainer.innerHTML = '';
     
     posts.forEach((post) => {
         const articleDiv = document.createElement('div');
         articleDiv.className = 'blog-post';
         
-        // Format the date
+        // Formatear fecha
         const fecha = new Date(post.fecha_publicacion).toLocaleDateString('es-ES', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         });
         
-        // Añadir botones de admin si el usuario es staff o superuser
+        // Botones de administrador
         const adminButtons = isAdmin ? `
             <div class="admin-controls">
                 <button class="edit-button" onclick="editPost(${post.id})">
@@ -71,20 +58,26 @@ async function displayBlogPosts(posts) {
     });
 }
 
+// Inicializar la página
+async function initialize() {
+    const posts = await fetchBlogPosts();
+    await displayBlogPosts(posts);
+    
+    // Verificar permisos de administrador
+    const { isStaff, isSuperuser } = await checkAdminStatus();
+    const asideElement = document.querySelector('aside');
+    if (asideElement) {
+        asideElement.style.display = (isStaff || isSuperuser) ? 'flex' : 'none';
+    }
+}
 
-//Administrativo
+// -------- Funciones de Administrador --------
 
-const deploy_add = document.getElementById('form__add__despoy');
-const formContainer = document.getElementById('form-container');
-const newscontainer = document.querySelector('main');
-
-
+// Verificar estado de administrador
 async function checkAdminStatus() {
     try {
         const response = await fetch('/user_info');
-        if (!response.ok) {
-            throw new Error('Error al obtener información del usuario');
-        }
+        if (!response.ok) throw new Error('Error al obtener información del usuario');
         const userData = await response.json();
         return {
             isStaff: userData.status_staff,
@@ -96,6 +89,10 @@ async function checkAdminStatus() {
     }
 }
 
+// Control del formulario
+const deploy_add = document.getElementById('form__add__despoy');
+const formContainer = document.getElementById('form-container');
+const newscontainer = document.querySelector('main');
 
 deploy_add.addEventListener('click', function() {
     deploy_add.innerHTML = deploy_add.innerHTML === 'Cerrar formulario' ? 'Añadir noticia' : 'Cerrar formulario';
@@ -103,10 +100,8 @@ deploy_add.addEventListener('click', function() {
     newscontainer.style.display = formContainer.style.display === 'none' ? 'flex' : 'none';
 });
 
-// Funciones para manejar  Creacion Edición y Eliminación
-
 // Crear Noticia
-const crearForm = document.getElementById('crear-producto-form');
+const crearForm = document.getElementById('crear-noticia-form');
 crearForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const data = {
@@ -125,46 +120,32 @@ crearForm.addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(() => {
         crearForm.reset();
-        // Restablecer los displays a sus valores predeterminados
         formContainer.style.display = 'none';
         newscontainer.style.display = 'flex';
         alert('Noticia creada exitosamente');
-        // Recargar posts
         initialize();
     })
     .catch(error => alert('Error al crear la noticia'));
 });
 
-
-//Editar Noticia 
+// Editar Noticia
 async function editPost(id) {
     const editarForm = document.getElementById('editar-noticia-form');
     const formContainer = editarForm.closest('.form-container');
-    const newscontainer = document.querySelector('main');
     
     try {
-        // Obtener datos del post
         const response = await fetch(`/blogpost/${id}/`);
         const post = await response.json();
         
-        // Rellenar el formulario con los datos existentes
         document.getElementById('editar-titulo').value = post.titulo;
         document.getElementById('editar-contenido').value = post.contenido;
         
-        // Mostrar formulario de edición y ocultar noticias
         form__add__despoy.style.display = 'none';
         formContainer.style.display = 'flex';
         newscontainer.style.display = 'none';
         
-        // Actualizar el manejador del formulario
         editarForm.onsubmit = async function(e) {
             e.preventDefault();
-            
-            const data = {
-                titulo: document.getElementById('editar-titulo').value,
-                contenido: document.getElementById('editar-contenido').value
-            };
-            
             try {
                 const response = await fetch(`/blogpost/${id}/`, {
                     method: 'PUT',
@@ -172,50 +153,28 @@ async function editPost(id) {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify({
+                        titulo: document.getElementById('editar-titulo').value,
+                        contenido: document.getElementById('editar-contenido').value
+                    })
                 });
                 
                 if (response.ok) {
-                    // Ocultar formulario y mostrar noticias
                     form__add__despoy.style.display = 'block';
                     formContainer.style.display = 'none';
                     newscontainer.style.display = 'flex';
-                    
-                    // Recargar posts
-                    const posts = await fetchBlogPosts();
-                    await displayBlogPosts(posts);
-                    
+                    await initialize();
                     alert('Noticia actualizada exitosamente');
                     editarForm.reset();
-                } else {
-                    throw new Error('Error al actualizar la noticia');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert(error.message);
+                alert('Error al actualizar la noticia');
             }
         };
-        
     } catch (error) {
-        console.error('Error al cargar el post:', error);
         alert('Error al cargar la noticia');
     }
 }
-
-// Cancelar Edición en Editar Noticia
-const cancelarEdicionBtn = document.getElementById('cancelar-crear-noticia');
-cancelarEdicionBtn.addEventListener('click', function() {
-    const editarForm = document.getElementById('editar-noticia-form');
-    const formContainer = editarForm.closest('.form-container');
-    
-    // Ocultar formulario y mostrar noticias
-    form__add__despoy.style.display = 'block';
-    formContainer.style.display = 'none';
-    newscontainer.style.display = 'flex';
-    
-    // Limpiar formulario
-    editarForm.reset();
-});
 
 // Eliminar Noticia
 async function deletePost(id) {
@@ -229,31 +188,26 @@ async function deletePost(id) {
             });
             
             if (response.ok) {
-                // Recargar posts después de eliminar
-                const posts = await fetchBlogPosts();
-                await displayBlogPosts(posts);
+                await initialize();
                 alert('Noticia eliminada exitosamente');
             }
         } catch (error) {
-            console.error('Error al eliminar el post:', error);
             alert('Error al eliminar la noticia');
         }
     }
 }
 
-// Initialize when page loads
-async function initialize(){
-    const posts = await fetchBlogPosts();
-    await displayBlogPosts(posts);
+// Cancelar Edición
+const cancelarEdicionBtn = document.getElementById('cancelar-crear-noticia');
+cancelarEdicionBtn.addEventListener('click', function() {
+    const editarForm = document.getElementById('editar-noticia-form');
+    const formContainer = editarForm.closest('.form-container');
+    
+    form__add__despoy.style.display = 'block';
+    formContainer.style.display = 'none';
+    newscontainer.style.display = 'flex';
+    editarForm.reset();
+});
 
-     // Verificar permisos de administrador
-    const { isStaff, isSuperuser } = await checkAdminStatus();
-    const asideElement = document.querySelector('aside');
-    if (asideElement) {
-        // Mostrar aside si el usuario es staff o superusuario
-        asideElement.style.display = (isStaff || isSuperuser) ? 'flex' : 'none';
-    }
-
-}
-
+// Inicializar la página
 initialize();
