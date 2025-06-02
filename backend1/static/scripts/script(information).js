@@ -93,11 +93,32 @@ async function checkAdminStatus() {
 const deploy_add = document.getElementById('form__add__despoy');
 const formContainer = document.getElementById('form-container');
 const newscontainer = document.querySelector('main');
+const cancel__create = document.getElementById('cancelar-crear-noticia');
+const cancel__edit = document.getElementById('cancelar-editar-noticia');
+
+const h2 = document.getElementById('h2_change');
 
 deploy_add.addEventListener('click', function() {
-    deploy_add.innerHTML = deploy_add.innerHTML === 'Cerrar formulario' ? 'Añadir noticia' : 'Cerrar formulario';
-    formContainer.style.display = formContainer.style.display === 'flex' ? 'none' : 'flex';
-    newscontainer.style.display = formContainer.style.display === 'none' ? 'flex' : 'none';
+    deploy_add.style.display = 'none';
+    formContainer.style.display = 'flex'
+    newscontainer.style.display = 'none'
+    h2.innerHTML = 'Crear Nueva Noticia';
+});
+
+cancel__create.addEventListener('click', function() {
+    deploy_add.style.display = 'block';
+    formContainer.style.display = 'none';
+    newscontainer.style.display = 'flex';
+    h2.innerHTML = 'Panel Administrativo';
+
+});
+
+cancel__edit.addEventListener('click', function() {
+    deploy_add.style.display = 'block';
+    formContainer.style.display = 'none';
+    newscontainer.style.display = 'flex';
+    h2.innerHTML = 'Panel Administrativo';
+
 });
 
 // Crear Noticia
@@ -122,6 +143,9 @@ crearForm.addEventListener('submit', function(e) {
         crearForm.reset();
         formContainer.style.display = 'none';
         newscontainer.style.display = 'flex';
+        deploy_add.style.display = 'block';
+        h2.innerHTML = 'Panel Administrativo';
+
         alert('Noticia creada exitosamente');
         initialize();
     })
@@ -140,9 +164,10 @@ async function editPost(id) {
         document.getElementById('editar-titulo').value = post.titulo;
         document.getElementById('editar-contenido').value = post.contenido;
         
-        form__add__despoy.style.display = 'none';
+        deploy_add.style.display = 'none';
         formContainer.style.display = 'flex';
         newscontainer.style.display = 'none';
+        h2.innerHTML = 'Editar Noticia';
         
         editarForm.onsubmit = async function(e) {
             e.preventDefault();
@@ -163,6 +188,7 @@ async function editPost(id) {
                     form__add__despoy.style.display = 'block';
                     formContainer.style.display = 'none';
                     newscontainer.style.display = 'flex';
+                    h2.innerHTML = 'Panel Administrativo';
                     await initialize();
                     alert('Noticia actualizada exitosamente');
                     editarForm.reset();
@@ -198,7 +224,7 @@ async function deletePost(id) {
 }
 
 // Cancelar Edición
-const cancelarEdicionBtn = document.getElementById('cancelar-crear-noticia');
+const cancelarEdicionBtn = document.getElementById('cancelar-editar-noticia');
 cancelarEdicionBtn.addEventListener('click', function() {
     const editarForm = document.getElementById('editar-noticia-form');
     const formContainer = editarForm.closest('.form-container');

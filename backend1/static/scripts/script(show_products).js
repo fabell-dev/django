@@ -269,7 +269,7 @@ async function deleteProduct(id) {
 }
 
 // Cancelar Edición
-const cancelarEdicionBtn = document.getElementById("cancelar-crear-noticia");
+const cancelarEdicionBtn = document.getElementById("cancelar-editar-producto");
 cancelarEdicionBtn.addEventListener("click", function () {
     const editarForm = document.getElementById("editar-noticia-form");
     const formContainer = editarForm.closest(".form-container");
