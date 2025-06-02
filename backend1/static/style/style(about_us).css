@@ -100,6 +100,13 @@ footer{
     text-decoration: none;
     font-size: 3.5dvh;
     transition: all 0.3s ease;}
+
+footer>a:nth-child(1){
+    cursor: default; text-decoration: underline;}
+footer>a:nth-child(1):hover{
+    scale: 1;}
+
+
 .footer--links:first-child{
     margin-left: 8dvh;}
 .footer--links:hover,.footer--links--media:hover:hover{
