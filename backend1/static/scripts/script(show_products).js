@@ -117,17 +117,37 @@ async function checkAdminStatus() {
     }
 }
 
-// Control del formulario de creación/edición
-const deploy_add = document.getElementById("form__add__despoy");
-const formContainer = document.getElementById("form-container");
-const newscontainer = document.querySelector("main");
+// Control del formulario
+const deploy_add = document.getElementById('form__add__despoy');
+const formContainer = document.getElementById('form-container');
+const newscontainer = document.querySelector('main');
+const cancel__create = document.getElementById('cancelar-crear-producto');
+const cancel__edit = document.getElementById('cancelar-editar-producto');
 
-deploy_add.addEventListener("click", function () {
-    deploy_add.innerHTML = deploy_add.innerHTML === "Cerrar formulario" ? "Añadir noticia" : "Cerrar formulario";
-    formContainer.style.display = formContainer.style.display === "flex" ? "none" : "flex";
-    newscontainer.style.display = formContainer.style.display === "none" ? "flex" : "none";
+const h2 = document.getElementById('h2_change');
+
+deploy_add.addEventListener('click', function() {
+    deploy_add.style.display = 'none';
+    formContainer.style.display = 'flex'
+    newscontainer.style.display = 'none'
+    h2.innerHTML = 'Crear Nueva Producto';
 });
 
+cancel__create.addEventListener('click', function() {
+    deploy_add.style.display = 'block';
+    formContainer.style.display = 'none';
+    newscontainer.style.display = 'flex';
+    h2.innerHTML = 'Panel Administrativo';
+
+});
+
+cancel__edit.addEventListener('click', function() {
+    deploy_add.style.display = 'block';
+    formContainer.style.display = 'none';
+    newscontainer.style.display = 'flex';
+    h2.innerHTML = 'Panel Administrativo';
+
+});
 // Crear Producto
 const crearForm = document.getElementById("crear-noticia-form");
 crearForm.addEventListener("submit", async function (e) {
@@ -165,8 +185,10 @@ crearForm.addEventListener("submit", async function (e) {
     .then(async () => {
         crearForm.reset();
         // Restablecer los displays a sus valores predeterminados
+        deploy_add.style.display = 'block';
         formContainer.style.display = 'none';
         newscontainer.style.display = 'flex';
+        h2.innerHTML = "Panel Administrativo";
         // Recargar productos
         await cargarYMostrarProductos();
         alert("Producto creado exitosamente");
@@ -194,6 +216,8 @@ async function editProduct(id) {
         form__add__despoy.style.display = "none";
         formContainer.style.display = "flex";
         newscontainer.style.display = "none";
+        h2.innerHTML = "Editar Producto";
+        
 
         // Actualizar el manejador del formulario
         editarForm.onsubmit = async function(e) {
@@ -224,6 +248,7 @@ async function editProduct(id) {
                     form__add__despoy.style.display = "block";
                     formContainer.style.display = "none";
                     newscontainer.style.display = "flex";
+                    h2.innerHTML = "Panel Administrativo";
 
                     // Recargar productos
                     await cargarYMostrarProductos();

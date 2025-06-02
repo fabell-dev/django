@@ -110,7 +110,6 @@ cancel__create.addEventListener('click', function() {
     formContainer.style.display = 'none';
     newscontainer.style.display = 'flex';
     h2.innerHTML = 'Panel Administrativo';
-
 });
 
 cancel__edit.addEventListener('click', function() {
@@ -118,7 +117,6 @@ cancel__edit.addEventListener('click', function() {
     formContainer.style.display = 'none';
     newscontainer.style.display = 'flex';
     h2.innerHTML = 'Panel Administrativo';
-
 });
 
 // Crear Noticia
