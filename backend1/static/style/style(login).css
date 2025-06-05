@@ -13,6 +13,14 @@ body{
     height: 100dvh;
     font-family: AnonymousPro;
     font-weight: 400;}
+
+.form__containerl>div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.helptext{display: none;}
     
 
 .success-message{
@@ -66,7 +74,7 @@ h1{
 
 
 /* ---Formulario---- */
-#form__containerl{
+.form__containerl{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,19 +123,19 @@ input[type="submit"]{
     width: 50%;
     padding: 1.5dvh;}
 
-#form__containerl > p{
+.form__containerl > p{
     margin-bottom: 1dvh;
     text-align: center;
     color: #fff;}
 
 
 /*---Button Switching---*/
-#form__containerl > button {
+.form__containerl > button {
     padding: 1dvh;
     border-radius: 20px;
     margin: 1dvh 0;
     width: 50%;}
-#form__containerl > button > a{
+.form__containerl > button > a{
     text-decoration: none;
     color: #000000;
     font-size: 2.5dvh;}

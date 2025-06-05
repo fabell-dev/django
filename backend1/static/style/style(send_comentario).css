@@ -4,6 +4,17 @@ body{
     align-items: center;
     justify-content: center;}
 
+#comentarioForm>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#comentarioForm>div>input{
+    width: 120%;
+}
+
+
+
 main{
     height: 60dvh;
     width: 60dvh;

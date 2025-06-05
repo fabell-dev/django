@@ -33,15 +33,41 @@ h2{
     font-family: FuzzyBubbles}
 
 
+/* Formulario de Informacion Personal*/
+#form__container_p{color: #fff;height: 70%;position: relative;transform: translateY(5dvh);}
+
+/* Formulario de Credenciales */
+#form__container_c{display: none;height: 80%}
+#form__container_c>label:nth-child(2){margin-top: 5dvh!important;}
+
+
+#back_form{
+    color: #000;
+    font-size: 3dvh;
+    height: 6dvh;
+    border-radius: 20px;
+    margin-top: 1dvh;
+    background-color: #ffffff;
+    width: 80%;}
+
+#next_form{
+    color: #000;
+    font-size: 2.5dvh;
+    padding: 2dvh;
+    border-radius: 20px;
+    margin-top: 3dvh;
+    background-color: #ffffff;
+    width: 80%;}
+
+
 #container{
     position: relative;
-    top: -5dvh;
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60dvh;
-    height:70dvh;
+    width: 65dvh;
+    height:98dvh;
     animation: llegar 2s ease 0.2s;}
 
 
@@ -50,17 +76,19 @@ h1{
     margin: 2dvh 0;
     font-size: 8dvh;
     filter: drop-shadow(0px  10px 10px rgba(0, 0, 0, 0.47) );
-    color: white;}
+    color: white;
+    transform: translateY(5dvh);}
 
 
 /* ---Formulario---- */
-#form__container{
+.form__container{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color:#32302da7;
     box-shadow: 0.8dvw 1dvw 20px 5px rgba(47, 47, 47, 0.82);
     height: fit-content;
+    height: 100%;
     width: 85%;
     font-size: 3dvh;
     border-radius: 10px;}
@@ -74,16 +102,25 @@ label{
     margin-bottom: 0.5dvh;}
 label:nth-child(2){
     margin-top: 2dvh;}
+fieldset{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    border-radius: 10px;
+    margin-top: 3dvh;}
+legend{
+    color: #fff; padding: 2dvh;font-size: 4dvh;}
 
 
 /*---Inputs---*/
 input{
     width: 60%;
+    height: 6dvh;
     margin-bottom:3dvh;     
     border-radius: 10px;
     outline-color:#0000006f ;
     background-color: rgba(226, 233, 211, 0.45);
-    padding: 1dvh;
     border: none;
     color: #fff;
     border-bottom:0.3dvh solid #000000;
@@ -101,33 +138,47 @@ input[type="submit"]{
     background-color: #fff;
     color: #000000;
     width: 40%;
-    padding: 1dvh;}
+    height:8dvh;
+    transform: translateY(5dvh);}
 
-#form__container > p{
-    margin-bottom: 1dvh;
-    text-align: center;
-    color: #fff;}
 
 
 /*---Button Switching---*/
-#form__container > button {
-    padding: 1dvh;
+.box{
+    position: absolute;
+    bottom: 2dvh;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;}
+.box > p{
+    font-size: 3.5dvh;
+    margin-bottom: 1dvh;
+    text-align: center;
+    color: #fff;}
+.box > button {
+    display: flex;
+    flex-direction: column;
+    height: 8dvh;
     border-radius: 20px;
-    margin: 1dvh 0;
+    background-color: #a1d19e;
     width: 80%;}
-#form__container > button > a{
+.box > button > a{
+    width: 100%;
+    align-self: center;
+    margin: auto;
+    color: #fff;
     text-decoration: none;
-    color: #000000;
     font-size: 2.5dvh;}
 
 
 /*---KeyFrames---*/
 @keyframes llegar{
     from{
-        top: -25dvh;
+        scale: 0.5;
         opacity: 0.2;}
     to{
-        top: -5dvh;
+        scale: 1;
         opacity: 1;}}
 
 span{display: none;}
