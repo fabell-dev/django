@@ -26,45 +26,47 @@ h2{
     color: #fff;
     text-align: center;
     filter: drop-shadow(10px  10px 10px rgba(0, 0, 0, 0.47) );}
+
 #side__container >p{
     font-size: 7dvh;
     color: #fff;
     text-align: center;
     font-family: FuzzyBubbles}
 
-
-/* Formulario de Informacion Personal*/
-#form__container_p{
-    color: #fff;
-    height: 72%;
+#step1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    transform: translateY(5dvh);
-    animation: llegar 1s ease;
-}
+    height: 85%;
+    width: 100%;
+    border-radius: 10px;
+    background-color:#32302da7;
+    box-shadow: 0.8dvw 1dvw 20px 5px rgba(47, 47, 47, 0.82);
+    animation: llegar 1s ease;}
 
-/* Formulario de Credenciales */
-#form__container_c{
-    height: 80%;
-    transition: all 1s ease allow-discrete ,display 0s ease allow-discrete;
-    @starting-style {
-        display: none;
-        scale: 0.5;
-        opacity: 0;
-    }
-}
-
-#form__container_c>label:nth-child(2){margin-top: 5dvh!important;}
-
+#step2{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 92%;
+    width: 100%;
+    border-radius: 10px;
+    background-color:#32302da7;
+    box-shadow: 0.8dvw 1dvw 20px 5px rgba(47, 47, 47, 0.82);
+    animation: llegar 1s ease;}
+#step2>label:nth-child(1){
+    margin-top: 4dvh;}
 
 #next_form{
     color: #000;
-    font-size: 2.5dvh;
-    padding: 2dvh;
+    font-size: 3dvh;
     border-radius: 20px;
+    height: 6dvh;
     margin-top: 3dvh;
     background-color: #ffffff;
-    width: 80%;}
-
+    width: 50%;}
 #back_form{
     color: #000;
     font-size: 3dvh;
@@ -72,18 +74,7 @@ h2{
     border-radius: 20px;
     margin-top: 1dvh;
     background-color: #ffffff;
-    width: 80%;}
-
-#container{
-    position: relative;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 65dvh;
-    height:98dvh;
-    animation: llegar 1s ease;}
-
+    width: 50%;}
 
 /* ---Encabezado Formulario--- */
 h1{
@@ -94,19 +85,25 @@ h1{
     transform: translateY(5dvh);
     transition: all 0.3s ease;}
 
+#container{
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65dvh;
+    height:100%;}
 
 /* ---Formulario---- */
 .form__container{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
-    background-color:#32302da7;
-    box-shadow: 0.8dvw 1dvw 20px 5px rgba(47, 47, 47, 0.82);
-    height: fit-content;
-    height: 100%;
+    height:100%;
     width: 85%;
     font-size: 3dvh;
-    border-radius: 10px;}
+    margin-top: 5dvh;}
 
 
 /* ---Labels--- */
@@ -128,6 +125,7 @@ legend{
     color: #fff; padding: 2dvh;font-size: 4dvh;}
 
 h5{
+    color: #fff;
     font-size: 2.8dvh;
     font-weight: 800;
     margin-top: 2dvh;}
@@ -156,11 +154,12 @@ input::placeholder{
 input[type="submit"]{
     font-size: 4dvh;
     border-radius: 30px;
-    background-color: #fff;
-    color: #000000;
-    width: 50%;
+    background-color: #a1d19e;
+    color: #ffffff;
+    width: 80%;
     height:8dvh;
-    transform: translateY(5dvh);}
+    transform: translateY(3dvh);
+    margin-bottom: 1dvh;}
 
 
 

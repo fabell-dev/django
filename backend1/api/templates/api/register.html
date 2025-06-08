@@ -3,6 +3,8 @@
 <head>
       {% load static %}
    <meta charset="UTF-8">
+   <meta http-equiv="Expires" content="0">
+   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
    <meta name="viewport" content="width=device-width,initial-scale=1.0">
    <link rel="icon" href="{% static 'icons/logo.svg' %}">
    <link rel="stylesheet" href="{% static 'style/style(register).css' %}">
@@ -17,29 +19,29 @@
 
    <div id="container">
       <h1 id="h1">Crear Cuenta</h1>
-      <form id="form__container_p" class="form__container" method="POST" autocomplete="off">
-         {% csrf_token %}
-         <fieldset>
-            <legend>Información Personal</legend>
-            {{registerform.first_name.label_tag}}
-            {{registerform.first_name}}
-            {{registerform.first_name.errors}}
-            {{registerform.last_name.label_tag}}
-            {{registerform.last_name}}
-            {{registerform.first_name.errors}}
-         </fieldset>
 
-         <h5>Rellenar este formulario es OPCIONAL</h5>
-         <button id="next_form" type="button">Siguiente</button>
-         <div class="box">
-            <p>¿Ya tienes una Cuenta?</p>
-            <button type="button"><a href="login">Inicia Sesión</a></button>
+      <form id="register_form" class="form__container" method="POST" autocomplete="off">
+         {% csrf_token %}
+         <div id="step1">
+            <fieldset>
+               <legend>Información Personal</legend>
+               {{registerform.first_name.label_tag}}
+               {{registerform.first_name}}
+               {{registerform.first_name.errors}}
+               {{registerform.last_name.label_tag}}
+               {{registerform.last_name}}
+               {{registerform.last_name.errors}}
+            </fieldset>
+            <h5>Rellenar este formulario es OPCIONAL</h5>
+            <button id="next_form" type="button">Siguiente</button>
+
+            <div class="box">
+               <p>¿Ya tienes una Cuenta?</p>
+               <button type="button"><a href="login">Inicia Sesión</a></button>
+            </div>
+
          </div>
-      </form>
-
-
-      <form id="form__container_c" class="form__container" method="POST" autocomplete="off">
-         {% csrf_token %}
+         <div id="step2">
             {{registerform.username.label_tag}}
             {{registerform.username}}
             {{registerform.username.errors}}
@@ -52,42 +54,32 @@
             {{registerform.password2.label_tag}}
             {{registerform.password2}}
             {{registerform.password2.errors}}
-
-         <button id="back_form" type="button">Atras</button>
-         <input type="submit" value="Crear Cuenta"/>
+            <button id="back_form" type="button">Atras</button>
+            <input type="submit" value="Crear Cuenta"/>
+         </div>
       </form>
    </div>
-
+   
    <div id="ghost__container"></div>
 
-
-<script>
-   const next = document.getElementById('next_form');
-   const back = document.getElementById('back_form');
-   const form_p = document.getElementById('form__container_p');
-   const form_c = document.getElementById('form__container_c');
-   const h1 = document.getElementById('h1');
-
-next.addEventListener('click', function() {
-
-   form_p.style.display = 'none'
-   form_c.style.display= 'flex'
-   form_c.style.transform='translateY(0dvh)';
-   h1.style.transform='translateY(0dvh)';
-
-});
-back.addEventListener('click', function() {
-
-   form_c.style.transform='translateY(5dvh)';
-   h1.style.transform='translateY(5dvh)';
-   form_c.style.display = 'none'
-   form_p.style.display= 'flex'
-});
+   <script>
+      const next = document.getElementById('next_form');
+      const back = document.getElementById('back_form');
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+      const h1 = document.getElementById('h1');
    
+      next.addEventListener('click', function() {
+         step1.style.display = 'none';
+         step2.style.display = 'flex';
+         step2.style.flexDirection = 'column';
+      });
+      back.addEventListener('click', function() {
+         step2.style.display = 'none';
+         step1.style.display = 'flex';
+      });
+   </script>
 
-
-</script>
-   
 <style>
 
 *{padding: 0;margin: 0;box-sizing: border-box;}

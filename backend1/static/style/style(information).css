@@ -9,6 +9,7 @@ aside{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: auto;}
 
 h2{
@@ -89,6 +90,9 @@ transform: translateX(40%);}
 nav>a>svg{height: 100%; width: auto;}
 
 /*---Links---*/
+nav>a:nth-child(6){
+    position: absolute;
+    right: 20%;}
 nav>a:nth-child(5){
     position: absolute;
     right: 3%;}

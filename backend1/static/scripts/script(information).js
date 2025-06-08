@@ -60,14 +60,28 @@ async function displayBlogPosts(posts) {
 
 // Inicializar la página
 async function initialize() {
+
+    //Haciendo links dinamicos
+    const link = document.getElementById("link")
+    const { isStaff, isSuperuser } = await checkAdminStatus();
+    if(isStaff == true || isSuperuser ==true){
+        link.innerHTML='Comentarios'
+        link.style.right='20%'
+        document.getElementById('link').href = 'edit_coments';
+    }
+    else{
+        link.innerHTML='Perfil'
+        document.getElementById('link').href = 'user_show';
+    }
+
+    //Fetch
     const posts = await fetchBlogPosts();
     await displayBlogPosts(posts);
     
     // Verificar permisos de administrador
-    const { isStaff, isSuperuser } = await checkAdminStatus();
     const asideElement = document.querySelector('aside');
     if (asideElement) {
-        asideElement.style.display = (isStaff || isSuperuser) ? 'flex' : 'none';
+        asideElement.style.display = isStaff || isSuperuser ? "flex" : "none";
     }
 }
 
@@ -93,12 +107,18 @@ async function checkAdminStatus() {
 const deploy_add = document.getElementById('form__add__despoy');
 const formContainer = document.getElementById('form-container');
 const newscontainer = document.querySelector('main');
+const navbar_comtainer = document.querySelector('nav');
+const footer_comtainer = document.querySelector('footer');
+const aside_comtainer = document.querySelector('aside');
 const cancel__create = document.getElementById('cancelar-crear-noticia');
 const cancel__edit = document.getElementById('cancelar-editar-noticia');
 
 const h2 = document.getElementById('h2_change');
 
 deploy_add.addEventListener('click', function() {
+    aside_comtainer.style.height='100dvh'
+    footer_comtainer.style.display='none'
+    navbar_comtainer.style.display='none'
     deploy_add.style.display = 'none';
     formContainer.style.display = 'flex'
     newscontainer.style.display = 'none'
@@ -106,6 +126,9 @@ deploy_add.addEventListener('click', function() {
 });
 
 cancel__create.addEventListener('click', function() {
+    aside_comtainer.style.height='auto'
+    footer_comtainer.style.display='flex'
+    navbar_comtainer.style.display='flex'
     deploy_add.style.display = 'block';
     formContainer.style.display = 'none';
     newscontainer.style.display = 'flex';
@@ -113,6 +136,9 @@ cancel__create.addEventListener('click', function() {
 });
 
 cancel__edit.addEventListener('click', function() {
+    aside_comtainer.style.height='auto'
+    footer_comtainer.style.display='flex'
+    navbar_comtainer.style.display='flex'
     deploy_add.style.display = 'block';
     formContainer.style.display = 'none';
     newscontainer.style.display = 'flex';
@@ -139,6 +165,9 @@ crearForm.addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(() => {
         crearForm.reset();
+        aside_comtainer.style.height='auto'
+        footer_comtainer.style.display='flex'
+        navbar_comtainer.style.display='flex'
         formContainer.style.display = 'none';
         newscontainer.style.display = 'flex';
         deploy_add.style.display = 'block';
@@ -162,6 +191,9 @@ async function editPost(id) {
         document.getElementById('editar-titulo').value = post.titulo;
         document.getElementById('editar-contenido').value = post.contenido;
         
+        aside_comtainer.style.height='100dvh'
+        footer_comtainer.style.display='none'
+        navbar_comtainer.style.display='none'
         deploy_add.style.display = 'none';
         formContainer.style.display = 'flex';
         newscontainer.style.display = 'none';
@@ -183,6 +215,10 @@ async function editPost(id) {
                 });
                 
                 if (response.ok) {
+
+                    aside_comtainer.style.height='auto'
+                    footer_comtainer.style.display='flex'
+                    navbar_comtainer.style.display='flex'
                     form__add__despoy.style.display = 'block';
                     formContainer.style.display = 'none';
                     newscontainer.style.display = 'flex';

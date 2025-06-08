@@ -35,12 +35,12 @@ async function mostrarTarjetas(productos) {
                     ? `
                     <div class="admin-controls">
                         <button class="edit-button" onclick="editProduct(${producto.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="16" height="16" viewBox="0 0 24 24">
                         <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                         </svg>
                         </button>
                         <button class="delete-button" onclick="deleteProduct(${producto.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="16" height="16" viewBox="0 0 24 24">
                         <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                     </svg>
                         </button>
@@ -81,6 +81,19 @@ function ordenarProductos(productos, tipoOrden) {
 
 // Cargar y mostrar productos with ordenamiento
 async function cargarYMostrarProductos() {
+    //Cambiar Link dinamicamente
+    const link = document.getElementById("link")
+    const { isStaff, isSuperuser } = await checkAdminStatus();
+    if(isStaff == true || isSuperuser ==true){
+        link.innerHTML='Comentarios'
+        link.style.right='20%'
+        document.getElementById('link').href = 'edit_coments';
+    }
+    else{
+        link.innerHTML='Perfil'
+        document.getElementById('link').href = 'user_show';
+    }
+
     const productos = await fetchProductos();
     let productosOrdenados = ordenarProductos(productos, "alfabetico");
     mostrarTarjetas(productosOrdenados);
@@ -92,7 +105,6 @@ async function cargarYMostrarProductos() {
     });
 
     // Verificar permisos de administrador
-    const { isStaff, isSuperuser } = await checkAdminStatus();
     const asideElement = document.querySelector("aside");
     if (asideElement) {
         asideElement.style.display = isStaff || isSuperuser ? "flex" : "none";
@@ -121,12 +133,21 @@ async function checkAdminStatus() {
 const deploy_add = document.getElementById('form__add__despoy');
 const formContainer = document.getElementById('form-container');
 const newscontainer = document.querySelector('main');
+const navbar_comtainer = document.querySelector('nav');
+const footer_comtainer = document.querySelector('footer');
+const aside_comtainer = document.querySelector('aside');
 const cancel__create = document.getElementById('cancelar-crear-producto');
 const cancel__edit = document.getElementById('cancelar-editar-producto');
+
 
 const h2 = document.getElementById('h2_change');
 
 deploy_add.addEventListener('click', function() {
+
+    aside_comtainer.style.height='100dvh'
+    footer_comtainer.style.display='none'
+    navbar_comtainer.style.display='none'
+
     deploy_add.style.display = 'none';
     formContainer.style.display = 'flex'
     newscontainer.style.display = 'none'
@@ -134,6 +155,12 @@ deploy_add.addEventListener('click', function() {
 });
 
 cancel__create.addEventListener('click', function() {
+
+    aside_comtainer.style.height='auto'
+    footer_comtainer.style.display='flex'
+    navbar_comtainer.style.display='flex'
+    
+
     deploy_add.style.display = 'block';
     formContainer.style.display = 'none';
     newscontainer.style.display = 'flex';
@@ -142,6 +169,9 @@ cancel__create.addEventListener('click', function() {
 });
 
 cancel__edit.addEventListener('click', function() {
+    aside_comtainer.style.height='auto'
+    footer_comtainer.style.display='flex'
+    navbar_comtainer.style.display='flex'
     deploy_add.style.display = 'block';
     formContainer.style.display = 'none';
     newscontainer.style.display = 'flex';
@@ -185,6 +215,10 @@ crearForm.addEventListener("submit", async function (e) {
     .then(async () => {
         crearForm.reset();
         // Restablecer los displays a sus valores predeterminados
+
+        aside_comtainer.style.height='auto'
+        footer_comtainer.style.display='flex'
+        navbar_comtainer.style.display='flex'
         deploy_add.style.display = 'block';
         formContainer.style.display = 'none';
         newscontainer.style.display = 'flex';
@@ -213,6 +247,10 @@ async function editProduct(id) {
         document.getElementById("editar-precio").value = producto.precio;
 
         // Mostrar formulario de edición y ocultar productos
+        
+        aside_comtainer.style.height='100dvh'
+        footer_comtainer.style.display='none'
+        navbar_comtainer.style.display='none'
         form__add__despoy.style.display = "none";
         formContainer.style.display = "flex";
         newscontainer.style.display = "none";
@@ -245,6 +283,9 @@ async function editProduct(id) {
 
                 if (response.ok) {
                     // Ocultar formulario y mostrar productos
+                    aside_comtainer.style.height='auto'
+                    footer_comtainer.style.display='flex'
+                    navbar_comtainer.style.display='flex'
                     form__add__despoy.style.display = "block";
                     formContainer.style.display = "none";
                     newscontainer.style.display = "flex";

@@ -15,6 +15,7 @@ aside{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: auto;}
 
 h2{
@@ -55,7 +56,7 @@ h1{
     border: 1px solid #333;
     border-radius: 8px;
     padding: 2dvh;
-    background: #717171;
+    background: #b1b1b1;
     width: 40dvh;
     height: auto;
     box-sizing: border-box;
@@ -250,6 +251,10 @@ button:hover {opacity: 0.7;}
 
 #form__add__despoy{margin: 0 ;margin-bottom: 2dvh;}
 
+.edit-button,.delete-button{
+    background-color: #83db83;
+}
+
 .form__container__add,.form__container__edit{
-    height: 58dvh;
+    height: 65dvh;
     width: 50% }
