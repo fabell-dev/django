@@ -34,21 +34,27 @@ h2{
 
 
 /* Formulario de Informacion Personal*/
-#form__container_p{color: #fff;height: 70%;position: relative;transform: translateY(5dvh);}
+#form__container_p{
+    color: #fff;
+    height: 72%;
+    position: relative;
+    transform: translateY(5dvh);
+    animation: llegar 1s ease;
+}
 
 /* Formulario de Credenciales */
-#form__container_c{display: none;height: 80%}
+#form__container_c{
+    height: 80%;
+    transition: all 1s ease allow-discrete ,display 0s ease allow-discrete;
+    @starting-style {
+        display: none;
+        scale: 0.5;
+        opacity: 0;
+    }
+}
+
 #form__container_c>label:nth-child(2){margin-top: 5dvh!important;}
 
-
-#back_form{
-    color: #000;
-    font-size: 3dvh;
-    height: 6dvh;
-    border-radius: 20px;
-    margin-top: 1dvh;
-    background-color: #ffffff;
-    width: 80%;}
 
 #next_form{
     color: #000;
@@ -59,6 +65,14 @@ h2{
     background-color: #ffffff;
     width: 80%;}
 
+#back_form{
+    color: #000;
+    font-size: 3dvh;
+    height: 6dvh;
+    border-radius: 20px;
+    margin-top: 1dvh;
+    background-color: #ffffff;
+    width: 80%;}
 
 #container{
     position: relative;
@@ -68,7 +82,7 @@ h2{
     align-items: center;
     width: 65dvh;
     height:98dvh;
-    animation: llegar 2s ease 0.2s;}
+    animation: llegar 1s ease;}
 
 
 /* ---Encabezado Formulario--- */
@@ -77,7 +91,8 @@ h1{
     font-size: 8dvh;
     filter: drop-shadow(0px  10px 10px rgba(0, 0, 0, 0.47) );
     color: white;
-    transform: translateY(5dvh);}
+    transform: translateY(5dvh);
+    transition: all 0.3s ease;}
 
 
 /* ---Formulario---- */
@@ -112,6 +127,11 @@ fieldset{
 legend{
     color: #fff; padding: 2dvh;font-size: 4dvh;}
 
+h5{
+    font-size: 2.8dvh;
+    font-weight: 800;
+    margin-top: 2dvh;}
+
 
 /*---Inputs---*/
 input{
@@ -123,6 +143,7 @@ input{
     background-color: rgba(226, 233, 211, 0.45);
     border: none;
     color: #fff;
+    text-align: center;
     border-bottom:0.3dvh solid #000000;
     border-right: 0.2dvh solid #000000cc;
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.477);}
@@ -137,7 +158,7 @@ input[type="submit"]{
     border-radius: 30px;
     background-color: #fff;
     color: #000000;
-    width: 40%;
+    width: 50%;
     height:8dvh;
     transform: translateY(5dvh);}
 
@@ -146,7 +167,7 @@ input[type="submit"]{
 /*---Button Switching---*/
 .box{
     position: absolute;
-    bottom: 2dvh;
+    bottom: 1dvh;
     display: flex;
     width: 100%;
     flex-direction: column;
