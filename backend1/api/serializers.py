@@ -14,6 +14,9 @@ class ProductosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Productos
         fields = ["id", "nombre", "cantidad", "precio", "ultima_modificacion", "imagen"]
+        extra_kwargs = {
+            'imagen': {'required': False}  # Hace que el campo imagen sea opcional
+        }
         
 class ComentariosSerializer(serializers.ModelSerializer):
     class Meta:

@@ -28,8 +28,11 @@ async function mostrarTarjetas(productos) {
                 const card = document.createElement("div");
                 card.className = "tarjeta";
                 const disponibilidad = producto.cantidad > 0 ? "si" : "no";
-                const imagenSrc = producto.imagen || `${STATIC_URL}default.png`;
-                
+                // Corregir el manejo de la URL de la imagen
+                const imagenSrc = producto.imagen 
+                ? `/media/Productos/${producto.imagen.split('/').pop()}` // Asegura la ruta correcta
+                : `${STATIC_URL}default.png`;
+            
                 // Botones de administrador
                 const adminButtons = isAdmin
                     ? `
@@ -267,10 +270,16 @@ async function editProduct(id) {
             formData.append("precio", document.getElementById("editar-precio").value);
 
             // Añadir imagen solo si se seleccionó una nueva
+            const mantenerImagen = document.getElementById("mantener-imagen").checked;
             const nuevaImagen = document.getElementById("editar-imagen").files[0];
-            if (nuevaImagen) {
-                formData.append("imagen", nuevaImagen);
-            }
+            
+            // Nueva lógica para manejar la imagen
+            if (nuevaImagen && !mantenerImagen){
+                // Si hay una nueva imagen seleccionada, la enviamos
+                formData.append("imagen", nuevaImagen);}
+            // Si mantenerImagen es true, no enviamos nada en el campo imagen
+            // esto hará que Django mantenga la imagen existente
+
 
             try {
                 const response = await fetch(`/productos/${id}/`, {
@@ -308,6 +317,12 @@ async function editProduct(id) {
         alert("Error al cargar el producto");
     }
 }
+
+document.getElementById("mantener-imagen").addEventListener("change", function() {
+    if (this.checked) {
+        document.getElementById("editar-imagen").value = "";
+    }
+});
 
 // Eliminar Producto
 async function deleteProduct(id) {
