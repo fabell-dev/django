@@ -265,20 +265,46 @@ async function editProduct(id) {
             e.preventDefault();
             const formData = new FormData();
 
-            formData.append("nombre", document.getElementById("editar-nombre").value);
-            formData.append("cantidad", document.getElementById("editar-cantidad").value);
-            formData.append("precio", document.getElementById("editar-precio").value);
+            // Validar nombre (solo letras y espacios)
+            const nombre = document.getElementById("editar-nombre").value;
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+                alert("El nombre solo puede contener letras");
+                return;
+            }
+        
+            // Validar precio (máximo 4 cifras)
+            const precio = document.getElementById("editar-precio").value;
+            if (precio > 9999) {
+                alert("El precio no puede ser mayor a 9999");
+                return;
+            }
+            // Validar cantidad (máximo 5 cifras)
+            const cantidad = document.getElementById("editar-cantidad").value;
+            if (cantidad > 9999) {
+                alert("La Cantidad no puede ser mayor a 9999");
+                return;
+            }
+
+            
+            formData.append("nombre", nombre);
+            formData.append("cantidad", cantidad);
+            formData.append("precio", precio);
+
 
             // Añadir imagen solo si se seleccionó una nueva
             const mantenerImagen = document.getElementById("mantener-imagen").checked;
             const nuevaImagen = document.getElementById("editar-imagen").files[0];
             
             // Nueva lógica para manejar la imagen
-            if (nuevaImagen && !mantenerImagen){
-                // Si hay una nueva imagen seleccionada, la enviamos
-                formData.append("imagen", nuevaImagen);}
-            // Si mantenerImagen es true, no enviamos nada en el campo imagen
-            // esto hará que Django mantenga la imagen existente
+            if (nuevaImagen && !mantenerImagen) {
+            // Validar tipo de archivo
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            if (!allowedTypes.includes(nuevaImagen.type)) {
+                alert("Formato de archivo no soportado. Por favor, sube una imagen (JPEG, PNG, GIF o WEBP)");
+                return;
+            }
+            formData.append("imagen", nuevaImagen);
+    }
 
 
             try {
