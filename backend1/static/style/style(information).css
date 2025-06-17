@@ -23,6 +23,8 @@ main {
     width: 100%;
     height: fit-content;}
 
+h1{color: #fff; margin:5dvh 0;font-size: 9dvh; text-decoration: underline;}
+
 .blog-post {
     background: #8c8c8c;
     border-radius: 8px;
@@ -32,13 +34,13 @@ main {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
 
 .blog-post h2 {
-    color: #333;
-    font-size: 4dvh;
-    margin-bottom: 2dvh;}
+    color: #ffffff;
+    font-size: 7dvh;
+    margin-bottom: 5dvh;}
 
 .blog-post p {
-    color: #666;
-    font-size: 2.5dvh;
+    color: #ffffff;
+    font-size: 4dvh;
     line-height: 1.6;}
 
 .post-header {
@@ -53,6 +55,7 @@ main {
     font-weight: bold;
     color: #333;}
 .post-date {
+    color: #fff;
     font-style: italic;}
 .post-id {
     color: #666;
@@ -70,7 +73,7 @@ nav{
     flex-direction: row;
     width: 100%;
     height: 14dvh;
-    background-color: #383636;}
+    background: linear-gradient(rgb(38, 37, 37),rgba(57, 55, 55, 0.952) );}
 
 nav>a{
     font-size: 4dvh;
@@ -118,7 +121,7 @@ nav>a:nth-child(3):hover{
 
 footer{
     display: flex;
-    position: fixed;
+    position: relative;
     bottom: 0;
     flex-direction: row;
     width: 100%;

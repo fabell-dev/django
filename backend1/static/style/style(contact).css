@@ -68,15 +68,15 @@ main>div:nth-child(2)>a{
     font-size: 5dvh;
     transform: translateY(20dvh);
     text-decoration: none;
-    padding: 5dvh;
-    background-color: #333333c9;
+    padding: 3dvh;
+    background-color: #585252c9;
     color: #fff;
     border-radius: 10px;
     transition: all 0.3s ease;
 }
 
 main>div:nth-child(2)>a:hover{
-    scale: 1.2;
+    scale: 1.1;
 }
     
 
@@ -95,7 +95,7 @@ nav{
     flex-direction: row;
     width: 100%;
     height: 12dvh;
-    background-color: #ffffff50;}
+    background: linear-gradient(rgb(38, 37, 37),rgba(57, 55, 55, 0.952) );}
 
 nav>a{
     font-size: 4dvh;

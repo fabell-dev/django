@@ -17,7 +17,6 @@ async function displayBlogPosts(posts) {
     const { isStaff, isSuperuser } = await checkAdminStatus();
     const isAdmin = isStaff || isSuperuser;
     
-    mainContainer.innerHTML = '';
     
     posts.forEach((post) => {
         const articleDiv = document.createElement('div');
@@ -63,11 +62,13 @@ async function initialize() {
 
     //Haciendo links dinamicos
     const link = document.getElementById("link")
+    const footer = document.querySelector("footer");
     const { isStaff, isSuperuser } = await checkAdminStatus();
     if(isStaff == true || isSuperuser ==true){
         link.innerHTML='Comentarios'
         link.style.right='20%'
         document.getElementById('link').href = 'edit_coments';
+        footer.style.display ='none'
     }
     else{
         link.innerHTML='Perfil'

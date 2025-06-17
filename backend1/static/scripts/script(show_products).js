@@ -85,12 +85,14 @@ function ordenarProductos(productos, tipoOrden) {
 // Cargar y mostrar productos with ordenamiento
 async function cargarYMostrarProductos() {
     //Cambiar Link dinamicamente
-    const link = document.getElementById("link")
+    const link = document.getElementById("link");
+    const footer = document.querySelector("footer");
     const { isStaff, isSuperuser } = await checkAdminStatus();
     if(isStaff == true || isSuperuser ==true){
         link.innerHTML='Comentarios'
         link.style.right='20%'
         document.getElementById('link').href = 'edit_coments';
+        footer.style.display ='none'
     }
     else{
         link.innerHTML='Perfil'

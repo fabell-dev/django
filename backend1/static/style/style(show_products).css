@@ -32,7 +32,7 @@ h1{
     font-size: 8dvh;}
 
 .order-selector {
-    position: absolute; top: 2dvh; right: 1dvh;
+    position: absolute; top: 20dvh; right: 1dvh;
     width: 40dvh;
     padding: 1dvh;
     border-radius: 5px;
@@ -74,27 +74,6 @@ h2{
     color: #333;}
 
 
-
-nav{
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    width: 100%;
-    height: 14dvh;
-    background-color: #333333;}
-
-nav>a{
-    font-size: 4dvh;
-    text-decoration: none;
-    align-self: center;
-    color: #fff;
-    align-self: center;
-    height: 50%;
-    border-radius: 5px;
-    transition: all 0.2s ease;}
-
-/*------Logo----*/
-
 nav{
     z-index: 10;
     display: flex;
@@ -103,8 +82,10 @@ nav{
     flex-direction: row;
     width: 100%;
     height: 14dvh;
-    background-color: #ffffff50;}
+    background: linear-gradient(rgb(38, 37, 37),rgba(57, 55, 55, 0.952) );}
 
+
+/*------Logo----*/
 nav>a{
     font-size: 4dvh;
     text-decoration: none;
@@ -149,8 +130,10 @@ nav>a:nth-child(2):hover{
 
 footer{
     display: flex;
+    position: relative;
     bottom: 0;
     flex-direction: row;
+    margin-top: 4dvh;
     width: 100%;
     height: 13dvh;
     background-color: #ffffff50;}
